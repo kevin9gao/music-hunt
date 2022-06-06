@@ -18,6 +18,20 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Song.associate = function(models) {
     // associations can be defined here
+    Song.belongsTo(models.User, {
+      foreignKey: 'artistId'
+    })
+    Song.hasMany(models.SongUpvote, {
+      foreignKey: 'songId'
+    })
+    Song.belongsToMany(models.Genre, {
+      through: 'SongGenre',
+      foreignKey: 'songId',
+      otherKey: 'genreId'
+    })
+    Song.hasMany(models.Comment, {
+      foreignKey: 'songId'
+    })
   };
   return Song;
 };

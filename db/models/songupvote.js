@@ -10,6 +10,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   SongUpvote.associate = function(models) {
     // associations can be defined here
+    SongUpvote.belongsTo(models.User, {
+      foreignKey: 'userId'
+    })
+    SongUpvote.belongsTo(models.Song, {
+      foreignKey: 'songId'
+    })
   };
   return SongUpvote;
 };
