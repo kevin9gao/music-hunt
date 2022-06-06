@@ -8,7 +8,9 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const songsRouter = require('./routes/songs')
+const songsRouter = require('./routes/songs');
+const genresRouter = require('./routes/genres');
+
 const app = express();
 
 // view engine setup
@@ -19,8 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/users', usersRouter);
-app.use('/songs', songsRouter)
+
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
 
@@ -38,6 +39,8 @@ store.sync();
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/songs', songsRouter);
+app.use('/genres', genresRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
