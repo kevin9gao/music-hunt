@@ -8,14 +8,16 @@ module.exports = {
 
       Example:
       */
-      return queryInterface.bulkInsert('Songs', [{
+      return queryInterface.bulkInsert('Songs', [
+        {
         name: "DemoLand",
         artistId: 1,
         albumArt: "",
         description: "the land of Mr. Demo",
         createdAt: new Date(),
         updatedAt: new Date()
-      }], {});
+        }
+      ], {});
   },
 
   down: (queryInterface, Sequelize) => {
