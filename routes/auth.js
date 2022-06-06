@@ -1,23 +1,38 @@
 const db = require('../db/models');
 
-const registerUser = (req, res) => {
-
+const loginUser = (req, res, user) => {
+  req.session.auth = {
+    userId: user.id,
+  };
 }
 
-const loginUser = (req, res) => {
+const restoreUser = async(req, res, next) => {
+  if (req.session.auth) {
+    const { userId } = req.session.auth;
 
-}
+    try {
+      const user = await db.User.findByPk(userId);
 
-const restoreUser = (req, res, next) => {
-
+      if (user) {
+        res.locals.authenticated = true;
+        res.locals.user = user;
+        next();
+      }
+    } catch (err) {
+      res.locals.authenticated = false;
+      next(err);
+    }
+  } else {
+    res.locals.authenticated = false;
+    next();
+  }
 }
 
 const logoutUser = (req, res) => {
-
+  delete req.session.auth;
 }
 
 module.exports = {
-  registerUser,
   loginUser,
   restoreUser,
   logoutUser
