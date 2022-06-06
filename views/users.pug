@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+    table
+        thead
+            tr
+                th Name
+                th Username
+        tbody
+            each user in users
+                tr
+                    td= user.full_name
+                    td= user.username
