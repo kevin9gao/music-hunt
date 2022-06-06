@@ -12,6 +12,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   CommentUpvote.associate = function(models) {
     // associations can be defined here
+    CommentUpvote.belongsTo(models.User, {
+      foreignKey: 'userId'
+    })
+    CommentUpvote.belongsTo(models.Comment, {
+      foreignKey: 'commentId'
+    })
   };
   return CommentUpvote;
 };
