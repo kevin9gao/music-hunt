@@ -16,14 +16,14 @@ router.get('/', asyncHandler(async (req, res, next) => {
   });
 }));
 
-router.get('/signup', csrfProtection, asyncHandler(async (req, res) => {
+router.get('/signup', csrfProtection, (req, res) => {
   const user = db.User.build();
   res.render('signup-form', {
     title: 'Sign Up',
     user,
-    csrfToken: req.csrfToken()
-  })
-}));
+    csrfToken: req.csrfToken(),
+  });
+});
 
 const userValidators = [
   check('username')
@@ -56,7 +56,7 @@ const userValidators = [
     })
 ];
 
-router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, res, next) => {
+router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, res) => {
   const { username, full_name, password } = req.body;
 
   const user = db.User.build({
