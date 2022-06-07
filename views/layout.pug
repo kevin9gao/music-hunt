@@ -5,8 +5,13 @@ html
         title="Express Starter App"
         link(rel='stylesheet' href='/stylesheets/reset.css')
   body
-    if locals.authenticated
-      p Logged In
-    else
-      p Logged Out
+    nav(class='navbar')
+      if locals.authenticated
+        p Logged In
+        form(action='/users/logout' method='post')
+          button(type='submit') Log Out
+      else
+        p Logged Out
+        form(action='/users/demo' method='post')
+          button Demo Login
     block content

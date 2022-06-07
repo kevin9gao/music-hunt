@@ -35,7 +35,12 @@ const userValidators = [
     .exists({ checkFalsy: true })
     .withMessage('Please enter a username.')
     .isLength({ max: 50 })
-    .withMessage('Username cannot be longer than 50 characters.'),
+    .withMessage('Username cannot be longer than 50 characters.')
+    .custom(value => {
+      if (value === 'demo') {
+        return Promise.reject("That's a dumb name.")
+      }
+    }),
   check('full_name')
     .exists({ checkFalsy: true })
     .withMessage('Please enter a name.')
@@ -119,7 +124,7 @@ router.get('/login', csrfProtection,
 
 router.post('/login', csrfProtection, loginValidators,
   asyncHandler(async(req, res) => {
-    // const { email, username, password } = req.body;
+
     const { login, password } = req.body;
 
     let errors = [];
@@ -127,12 +132,6 @@ router.post('/login', csrfProtection, loginValidators,
     let user;
 
     if (validatorErrors.isEmpty()) {
-      // const user = await db.User.findOne({ where: { email, username }})
-      // if (email) {
-      //   user = await db.User.findOne({where: {email}})
-      // } else if (username) {
-      //   user = await db.User.findOne({where: {username}})
-      // }
 
       if (login.includes('@')) {
         user = await db.User.findOne({where: { email: login }})
@@ -166,5 +165,23 @@ router.post('/logout', (req, res) => {
   logoutUser(req, res);
   res.redirect('/users/login');
 })
+
+// router.post('/demo', asyncHandler(async (req, res) => {
+//   const demoUser = db.User.findOne({ where: { username: 'demo' } });
+//   if (!demoUser) {
+//     const password = 'demologin';
+//     const hashedPassword = await bcrypt.hash(password, 10);
+
+//     const demoUser = await db.User.create({
+//       email: 'demouser@demo.com',
+//       username: 'demo',
+//       full_name: 'Demo Login',
+//       hashedPassword
+//     })
+//   }
+
+//   loginUser(req, res, demoUser);
+//   return res.redirect('/users');
+// }))
 
 module.exports = router;
