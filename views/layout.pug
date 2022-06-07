@@ -5,4 +5,8 @@ html
         title="Express Starter App"
         link(rel='stylesheet' href='/stylesheets/reset.css')
   body
+    if locals.authenticated
+      p Logged In
+    else
+      p Logged Out
     block content
