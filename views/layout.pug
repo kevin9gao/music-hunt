@@ -7,7 +7,8 @@ html
   body
     nav(class='navbar')
       if locals.authenticated
-        p Logged In
+        if user
+          p= `Welcome, ${user.full_name}`
         form(action='/users/logout' method='post')
           button(type='submit') Log Out
       else
