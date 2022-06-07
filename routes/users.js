@@ -94,7 +94,7 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, 
     user.hashedPassword = hashedPassword;
     user.save();
     loginUser(req, res, user);
-    res.redirect('/');
+    req.session.save(( ) => res.redirect('/'));
   } else {
     const errors = validatorErrors.array().map(error => error.msg);
     res.render('signup-form', {
@@ -145,7 +145,7 @@ router.post('/login', csrfProtection, loginValidators,
 
         if (passwordMatch) {
           loginUser(req, res, user);
-          return res.redirect('/')
+          return req.session.save(( ) => res.redirect('/'))
         }
       }
       errors.push("Invalid email or password")
@@ -164,7 +164,7 @@ router.post('/login', csrfProtection, loginValidators,
 
 router.post('/logout', (req, res) => {
   logoutUser(req, res);
-  res.redirect('/users/login');
+  req.session.save(( ) => res.redirect('/users/login'));
 })
 
 router.post('/demo', asyncHandler(async (req, res) => {
@@ -182,7 +182,7 @@ router.post('/demo', asyncHandler(async (req, res) => {
   }
 
   loginUser(req, res, demoUser);
-  res.redirect('/users');
+  req.session.save(( ) => res.redirect('/users'));
 }))
 
 module.exports = router;
