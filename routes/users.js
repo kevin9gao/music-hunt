@@ -30,12 +30,29 @@ const userValidators = [
     .exists({ checkFalsy: true })
     .withMessage('Please provide an email.')
     .isEmail()
-    .withMessage('Please provide a valid email.'),
+    .withMessage('Please provide a valid email.')
+    .custom(async (value) => {
+      const user = await db.User.findOne({where: { email: value } });
+      if (user) {
+        return Promise.reject('Email is already in use.')
+      }
+    }),
   check('username')
     .exists({ checkFalsy: true })
     .withMessage('Please enter a username.')
     .isLength({ max: 50 })
-    .withMessage('Username cannot be longer than 50 characters.'),
+    .withMessage('Username cannot be longer than 50 characters.')
+    .custom(value => {
+      if (value === 'demo') {
+        return Promise.reject("Username reserved for demos.")
+      }
+    })
+    .custom(async (value) => {
+      const user = await db.User.findOne({where: { username: value } });
+      if (user) {
+        return Promise.reject('Username is already in use.')
+      }
+    }),
   check('full_name')
     .exists({ checkFalsy: true })
     .withMessage('Please enter a name.')
@@ -69,7 +86,7 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, 
     username,
     full_name
   })
-  // console.log(user)
+
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
@@ -90,17 +107,6 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, 
 }));
 
 const loginValidators = [
-  // oneOf([
-  //   check('email')
-  //     .exists({ checkFalsy: true })
-  //     .withMessage('Please provide an email.')
-  //     .isEmail()
-  //     .withMessage('Please provide a valid email.'),
-
-  //   check('username')
-  //     .exists({ checkFalsy: true })
-  //     .withMessage('Please enter a username.'),
-  // ]),
   check('login')
     .exists({ checkFalsy: true })
     .withMessage('Please enter a username or email.'),
@@ -110,7 +116,7 @@ const loginValidators = [
 ]
 
 router.get('/login', csrfProtection,
-  async(req, res, next) => {
+  async(req, res) => {
     res.render('login-form', {
       title: "Login",
       csrfToken: req.csrfToken()
@@ -119,7 +125,7 @@ router.get('/login', csrfProtection,
 
 router.post('/login', csrfProtection, loginValidators,
   asyncHandler(async(req, res) => {
-    // const { email, username, password } = req.body;
+
     const { login, password } = req.body;
 
     let errors = [];
@@ -127,12 +133,6 @@ router.post('/login', csrfProtection, loginValidators,
     let user;
 
     if (validatorErrors.isEmpty()) {
-      // const user = await db.User.findOne({ where: { email, username }})
-      // if (email) {
-      //   user = await db.User.findOne({where: {email}})
-      // } else if (username) {
-      //   user = await db.User.findOne({where: {username}})
-      // }
 
       if (login.includes('@')) {
         user = await db.User.findOne({where: { email: login }})
@@ -166,5 +166,23 @@ router.post('/logout', (req, res) => {
   logoutUser(req, res);
   res.redirect('/users/login');
 })
+
+router.post('/demo', asyncHandler(async (req, res) => {
+  let demoUser = await db.User.findOne({ where: { username: 'demo' } });
+  if (!demoUser) {
+    const password = 'demologin';
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    demoUser = await db.User.create({
+      email: 'demouser@demo.com',
+      username: 'demo',
+      full_name: 'Demo Login',
+      hashedPassword
+    })
+  }
+
+  loginUser(req, res, demoUser);
+  res.redirect('/users');
+}))
 
 module.exports = router;
