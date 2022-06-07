@@ -1,7 +1,12 @@
 extends layout.pug
 
 block content
-  form
+  if errors
+    p The following errors took place:
+      ul
+        each error in errors
+          li= error
+  form(action='/users/signup' method='post')
     input(type='hidden' name='_csurf' value=csrfToken)
     label Username
     input(type='text' name='username' value=user.username required)

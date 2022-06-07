@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
 
-const db = require('../db/models')
+const db = require('../db/models');
+const { loginUser } = require('./auth');
 
 /* GET users listing. */
 router.get('/', asyncHandler(async (req, res, next) => {
@@ -54,8 +56,31 @@ const userValidators = [
     })
 ];
 
-router.post('/signup', csrfProtection, asyncHandler(async (req, res, next) => {
+router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, res, next) => {
   const { username, full_name, password } = req.body;
+
+  const user = db.User.build({
+    username,
+    full_name
+  })
+
+  const validatorErrors = validationResult(req);
+
+  if (validatorErrors.isEmpty()) {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    user.hashedPassword = hashedPassword;
+    await user.save;
+    loginUser(req, res, user);
+    res.redirect('/');
+  } else {
+    const errors = validatorErrors.array().map(error => error.msg);
+    res.render('signup-form', {
+      title: 'Sign Up',
+      errors,
+      user,
+      csrfToken: req.csrfToken()
+    })
+  }
 }))
 
 module.exports = router;
