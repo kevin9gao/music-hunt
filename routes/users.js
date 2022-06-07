@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils');
-const { check, validationResult } = require('express-validator');
+const { check, oneOf, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
 const db = require('../db/models');
@@ -87,6 +87,71 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, 
       csrfToken: req.csrfToken()
     })
   }
-}))
+}));
+
+const loginValidators = [
+  oneOf([
+    check('email')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide an email.')
+      .isEmail()
+      .withMessage('Please provide a valid email.'),
+
+    check('username')
+      .exists({ checkFalsy: true })
+      .withMessage('Please enter a username.'),
+  ]),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please enter a password.')
+]
+
+router.get('/login', csrfProtection,
+  async(req, res, next) => {
+    res.render('login-form', {
+      title: "Login",
+      csrfToken: req.csrfToken()
+    })
+});
+
+router.post('/login', csrfProtection, loginValidators,
+  asyncHandler(async(req, res) => {
+    const { email, username, password } = req.body;
+
+    let errors = [];
+    const validatorErrors = validationResult(req);
+    let user;
+
+    if (validatorErrors.isEmpty()) {
+      // const user = await db.User.findOne({ where: { email, username }})
+      if (email) {
+        user = await db.User.findOne({where: {email}})
+      } else if (username) {
+        user = await db.User.findOne({where: {username}})
+      }
+
+      if (user !== null) {
+        const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+
+        if (passwordMatch) {
+          loginUser(req, res, user);
+          return res.redirect('/')
+        }
+      }
+      errors.push("Invalid email or password")
+    } else {
+      errors = validatorErrors.array().map(error => error.msg)
+    }
+
+    res.render('login-form', {
+      title: 'Login',
+      email,
+      username,
+      errors,
+      csrfToken: req.csrfToken()
+    })
+  })
+)
+
 
 module.exports = router;
