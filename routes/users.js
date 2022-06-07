@@ -59,17 +59,17 @@ const userValidators = [
 router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, res) => {
   const { username, full_name, password } = req.body;
 
-  const user = db.User.build({
+  const user = await db.User.build({
     username,
     full_name
   })
-
+  console.log(user)
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
-    await user.save;
+    user.save();
     loginUser(req, res, user);
     res.redirect('/');
   } else {
