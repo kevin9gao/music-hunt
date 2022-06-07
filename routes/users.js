@@ -90,17 +90,20 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, 
 }));
 
 const loginValidators = [
-  oneOf([
-    check('email')
-      .exists({ checkFalsy: true })
-      .withMessage('Please provide an email.')
-      .isEmail()
-      .withMessage('Please provide a valid email.'),
+  // oneOf([
+  //   check('email')
+  //     .exists({ checkFalsy: true })
+  //     .withMessage('Please provide an email.')
+  //     .isEmail()
+  //     .withMessage('Please provide a valid email.'),
 
-    check('username')
-      .exists({ checkFalsy: true })
-      .withMessage('Please enter a username.'),
-  ]),
+  //   check('username')
+  //     .exists({ checkFalsy: true })
+  //     .withMessage('Please enter a username.'),
+  // ]),
+  check('login')
+    .exists({ checkFalsy: true })
+    .withMessage('Please enter a username or email.'),
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please enter a password.')
@@ -116,7 +119,8 @@ router.get('/login', csrfProtection,
 
 router.post('/login', csrfProtection, loginValidators,
   asyncHandler(async(req, res) => {
-    const { email, username, password } = req.body;
+    // const { email, username, password } = req.body;
+    const { login, password } = req.body;
 
     let errors = [];
     const validatorErrors = validationResult(req);
@@ -124,10 +128,16 @@ router.post('/login', csrfProtection, loginValidators,
 
     if (validatorErrors.isEmpty()) {
       // const user = await db.User.findOne({ where: { email, username }})
-      if (email) {
-        user = await db.User.findOne({where: {email}})
-      } else if (username) {
-        user = await db.User.findOne({where: {username}})
+      // if (email) {
+      //   user = await db.User.findOne({where: {email}})
+      // } else if (username) {
+      //   user = await db.User.findOne({where: {username}})
+      // }
+
+      if (login.includes('@')) {
+        user = await db.User.findOne({where: { email: login }})
+      } else {
+        user = await db.User.findOne({where: {username: login}})
       }
 
       if (user !== null) {
@@ -145,8 +155,7 @@ router.post('/login', csrfProtection, loginValidators,
 
     res.render('login-form', {
       title: 'Login',
-      email,
-      username,
+      login,
       errors,
       csrfToken: req.csrfToken()
     })
@@ -155,7 +164,7 @@ router.post('/login', csrfProtection, loginValidators,
 
 router.post('/logout', (req, res) => {
   logoutUser(req, res);
-  res.redirect('/users');
+  res.redirect('/users/login');
 })
 
 module.exports = router;
