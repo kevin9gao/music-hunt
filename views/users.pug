@@ -6,8 +6,10 @@ block content
             tr
                 th Name
                 th Username
+                th Email
         tbody
             each user in users
                 tr
                     td= user.full_name
                     td= user.username
+                    td= user.email

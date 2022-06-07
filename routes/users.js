@@ -26,6 +26,11 @@ router.get('/signup', csrfProtection, (req, res) => {
 });
 
 const userValidators = [
+  check('email')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide an email.')
+    .isEmail()
+    .withMessage('Please provide a valid email.'),
   check('username')
     .exists({ checkFalsy: true })
     .withMessage('Please enter a username.')
@@ -57,13 +62,14 @@ const userValidators = [
 ];
 
 router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, res) => {
-  const { username, full_name, password } = req.body;
+  const { email, username, full_name, password } = req.body;
 
   const user = await db.User.build({
+    email,
     username,
     full_name
   })
-  console.log(user)
+  // console.log(user)
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {

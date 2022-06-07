@@ -8,6 +8,9 @@ block content
           li= error
   form(action='/users/signup' method='post')
     input(type='hidden' name='_csrf' value=csrfToken)
+    label Email
+    input(type='email' name='email' value=user.email required)
+    br
     label Username
     input(type='text' name='username' value=user.username required)
     br
@@ -15,6 +18,7 @@ block content
     input(type='text' name='full_name' value=user.full_name required)
     br
     label Password
+    //- TODO change 'text' to 'password'
     input(type='text' name='password' value=user.password required)
     br
     label Confirm Password
