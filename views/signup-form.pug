@@ -1,0 +1,18 @@
+extends layout.pug
+
+block content
+  form
+    input(type='hidden' name='_csurf' value=csrfToken)
+    label Username
+    input(type='text' name='username' value=user.username required)
+    br
+    label Full Name
+    input(type='text' name='full_name' value=user.full_name required)
+    br
+    label Password
+    input(type='text' name='password' value=user.password required)
+    br
+    label Confirm Password
+    input(type='text' name='confirmPassword' value='' required)
+    br
+    button Sign Up
