@@ -30,17 +30,19 @@ body {
     box-sizing: border-box;
     display: inline-flex;
     flex-direction: row;
-    width: 988px;
+    width: 1216px;
+    margin: 40px 142px 0px;
+    height: 100%;
 }
 
 .songs_container {
     box-sizing: border-box;
-    width: 708px;
+    width: 800px;
 
 }
 
 .sidebar {
-    box-sizing: border-box;
+    box-sizing: content-box;
     width: 280px;
     border-left: 1px solid #d9e1ec;
     margin-left: 64px;
