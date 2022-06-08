@@ -6,7 +6,7 @@ block content
             tr
                 th Song Name
                 th Song Artist
-                th Album
+                th Album Art
                 th Description
                 th Upvotes
 
@@ -15,17 +15,14 @@ block content
                 - count =0
                 each songUpvote in songUpvotes
                     if (songUpvote.songId === song.id)
-                        //- count +=1
                         - count +=1
-
                 tr
                     td= song.name
                     td= users[song.artistId - 1].username
                     td
                         img(src=song.albumArt class="songPic")
-                    //- td= song.users.username
                     td= song.description
-
                     td= count
-
-                    //- td= song.songupvote
+                    td
+                        form(action=`/songs/upvote/${song.id}` method="post")
+                            button Upvote
