@@ -32,7 +32,7 @@ body {
     flex-direction: row;
     width: 1216px;
     margin: 40px 142px 0px;
-    height: 100%;
+    height: fit-content;
 }
 
 .songs_container {
@@ -54,4 +54,27 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+
+.song {
+    display: flex;
+    flex-direction: row;
+    height: 82px;
+    padding-bottom: 24px;
+    padding-top: 24px;
+}
+
+.song_img {
+    width: 80px;
+    height: 80px;
+    padding-right: 8px;
+}
+
+.song_info {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 620px;
+    height: 82px;
+    margin-left: 16px;
 }
