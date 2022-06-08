@@ -12,11 +12,27 @@ module.exports = {
         {
         name: "DemoLand",
         artistId: 1,
-        albumArt: "",
+        albumArt: "https://jwatt.org/svg/tmp/embedded-sizing/embedded-px-px.png",
         description: "the land of Mr. Demo",
         createdAt: new Date(),
         updatedAt: new Date()
-        }
+        },
+        {
+          name: "DemoMusic",
+          artistId: 2,
+          albumArt: "https://jwatt.org/svg/tmp/embedded-sizing/embedded-px-px.png",
+          description: "the land of Mr. Demo",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          name: "MusicLand",
+          artistId: 2,
+          albumArt: "https://jwatt.org/svg/tmp/embedded-sizing/embedded-px-px.png",
+          description: "the land of Mr. Demo",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
       ], {});
   },
 

@@ -24,7 +24,15 @@ module.exports = {
         hashedPassword: 'example-pasword',
         createdAt: new Date(),
         updatedAt: new Date()
-      }
+      },
+      {
+        email: 'mi@demo.com',
+        username: 'Mr. Demo3',
+        full_name: 'Demo Demolition3',
+        hashedPassword: 'example-pasword',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], {});
   },
 
