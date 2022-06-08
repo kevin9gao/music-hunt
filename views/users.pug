@@ -5,21 +5,21 @@ append head
     link(rel='stylesheet' href='/stylesheets/users.css')
     script(src="/javascripts/index.js" type="module" defer)
 block content
-    div(class='users-container')
-        table(class='table')
-            thead
-                tr(id='users-table-head')
-                    th(class='column one head') Name
-                    th(class='column two head') Username
-                    th(class='column three head') Email
-            tbody(id='users-table')
-                each user in users
-                    tr(id='users-table-body')
-                        td(class='column one body')= user.full_name
-                        td(class='column two body')= user.username
-                        td(class='column three body')= user.email
-    div(class='sidebar')
-        aside
+    div(class='main-container')
+        main(class='users-container')
+            table(class='table')
+                thead
+                    tr(id='users-table-head')
+                        th(class='column one head') Name
+                        th(class='column two head') Username
+                        th(class='column three head') Email
+                tbody(id='users-table')
+                    each user in users
+                        tr(id='users-table-body')
+                            td(class='column one body')= user.full_name
+                            td(class='column two body')= user.username
+                            td(class='column three body')= user.email
+        aside(class='sidebar')
             div(class='card-containers')
                 article(class='card')
                     header
@@ -27,6 +27,14 @@ block content
                         img(src='https://static.hkej.com/eji/images/2014/09/04/892989_91a10c6cfe22af72bff92362cc444353.jpg')
                         div(class='content')
                             p This is an interesting article about the latest trending tunes. Some tunes were made by famous producers, while some tunes were made by some nobodies. This song was made by this cat.
+                article(class='card')
+                    header
+                        h2(class='card-headers') Look Second Card
+                        img(src='https://static.hkej.com/eji/images/2014/09/04/892989_91a10c6cfe22af72bff92362cc444353.jpg')
+                        div(class='content')
+                            p This is an interesting article about the latest second cards. Some cards were made by famous programmers, while some cards were made by me. Some cards were made by this same cat.
+
+
         //- div(class='users-headers')
         //-     div(class='column one header') Name
         //-     div(class='column two header') Username
