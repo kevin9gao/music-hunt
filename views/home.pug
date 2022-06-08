@@ -1,0 +1,14 @@
+extends layout
+
+append head
+  title= title
+  link(rel='stylesheet' href='/stylesheets/home.css')
+  script(src="/javascripts/index.js" type="module" defer)
+block content
+  div.main_content_container
+    div.songs_container
+      div#song_header
+        div.header_text_style#song_header= 'Trending Music 👇'
+        div.sub_header_text_style= 'Featured'
+    div.sidebar
+      div= 'test'
