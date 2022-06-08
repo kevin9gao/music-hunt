@@ -45,13 +45,13 @@ const userValidators = [
     .custom(value => {
       if (value === 'demo') {
         return Promise.reject("Username reserved for demos.")
-      }
+      } else return true
     })
     .custom(async (value) => {
       const user = await db.User.findOne({where: { username: value } });
       if (user) {
         return Promise.reject('Username is already in use.')
-      }
+      } else return true
     }),
   check('full_name')
     .exists({ checkFalsy: true })
@@ -92,9 +92,13 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, 
   if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
-    user.save();
+    await user.save();
     loginUser(req, res, user);
+<<<<<<< HEAD
     req.session.save(( ) => res.redirect('/'));
+=======
+    req.session.save(() => res.redirect('/'));
+>>>>>>> d14ac1b173c706ddd83f7296135bd43812650cc6
 
   } else {
     const errors = validatorErrors.array().map(error => error.msg);
