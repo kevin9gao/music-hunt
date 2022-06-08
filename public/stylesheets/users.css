@@ -1,11 +1,12 @@
 table {
   display: grid;
   border-collapse: collapse;
-  min-width: 100%;
+  min-width: 60%;
+  max-width: 60%;
   grid-template-columns:
     minmax(150px, 1fr)
     minmax(150px, 1.33fr)
-    minmax(150px, 2.67fr);
+    minmax(150px, 1.33fr);
   max-width: 80%;
 }
 
