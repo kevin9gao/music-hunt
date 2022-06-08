@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils');
-const { check, oneOf, validationResult } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
 const db = require('../db/models');
@@ -32,7 +32,7 @@ const userValidators = [
     .isEmail()
     .withMessage('Please provide a valid email.')
     .custom(async (value) => {
-      const user = await db.User.findOne({where: { email: value } });
+      const user = await db.User.findOne({ where: { email: value } });
       if (user) {
         return Promise.reject('Email is already in use.')
       }
@@ -45,13 +45,13 @@ const userValidators = [
     .custom(value => {
       if (value === 'demo') {
         return Promise.reject("Username reserved for demos.")
-      }
+      } else return true
     })
     .custom(async (value) => {
-      const user = await db.User.findOne({where: { username: value } });
+      const user = await db.User.findOne({ where: { username: value } });
       if (user) {
         return Promise.reject('Username is already in use.')
-      }
+      } else return true
     }),
   check('full_name')
     .exists({ checkFalsy: true })
@@ -88,13 +88,14 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, 
   })
 
   const validatorErrors = validationResult(req);
+  // console.log(validationResult(req))
 
   if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
-    user.save();
+    await user.save();
     loginUser(req, res, user);
-    req.session.save(( ) => res.redirect('/'));
+    req.session.save(() => res.redirect('/'));
   } else {
     const errors = validatorErrors.array().map(error => error.msg);
     res.render('signup-form', {
@@ -116,15 +117,15 @@ const loginValidators = [
 ]
 
 router.get('/login', csrfProtection,
-  async(req, res) => {
+  async (req, res) => {
     res.render('login-form', {
       title: "Login",
       csrfToken: req.csrfToken()
     })
-});
+  });
 
 router.post('/login', csrfProtection, loginValidators,
-  asyncHandler(async(req, res) => {
+  asyncHandler(async (req, res) => {
 
     const { login, password } = req.body;
 
@@ -135,9 +136,9 @@ router.post('/login', csrfProtection, loginValidators,
     if (validatorErrors.isEmpty()) {
 
       if (login.includes('@')) {
-        user = await db.User.findOne({where: { email: login }})
+        user = await db.User.findOne({ where: { email: login } })
       } else {
-        user = await db.User.findOne({where: {username: login}})
+        user = await db.User.findOne({ where: { username: login } })
       }
 
       if (user !== null) {
@@ -145,7 +146,7 @@ router.post('/login', csrfProtection, loginValidators,
 
         if (passwordMatch) {
           loginUser(req, res, user);
-          return req.session.save(( ) => res.redirect('/'))
+          return req.session.save(() => res.redirect('/'))
         }
       }
       errors.push("Invalid email or password")
@@ -164,7 +165,7 @@ router.post('/login', csrfProtection, loginValidators,
 
 router.post('/logout', (req, res) => {
   logoutUser(req, res);
-  req.session.save(( ) => res.redirect('/users/login'));
+  req.session.save(() => res.redirect('/users/login'));
 })
 
 router.post('/demo', asyncHandler(async (req, res) => {
@@ -182,7 +183,7 @@ router.post('/demo', asyncHandler(async (req, res) => {
   }
 
   loginUser(req, res, demoUser);
-  req.session.save(( ) => res.redirect('/users'));
+  req.session.save(() => res.redirect('/users'));
 }))
 
 module.exports = router;
