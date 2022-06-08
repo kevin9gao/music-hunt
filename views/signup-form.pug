@@ -1,5 +1,7 @@
 extends layout.pug
-
+append head
+  link(rel='stylesheet' href='/stylesheets/signup-form.css')
+  script(src="/javascripts/users.js" type="module" defer)
 block content
   if errors
     p The following errors took place:
