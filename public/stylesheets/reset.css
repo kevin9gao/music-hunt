@@ -93,25 +93,3 @@ h1 {
   transition-delay: 500;
   color: #f54906;
 }
-
-
-
-
-/* /users */
-
-.table {
-  display: grid;
-  grid-template-areas:
-  'head head head'
-  'body'
-  ;
-}
-
-.table-head-element {
-  grid-area: head;
-}
-
-
-.table-body-element {
-  grid-area: body;
-}

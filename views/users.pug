@@ -1,15 +1,35 @@
 extends layout.pug
 
+append head
+    title= title
+    link(rel='stylesheet' href='/stylesheets/users.css')
+    script(src="/javascripts/index.js" type="module" defer)
 block content
-    table(class='table')
-        thead(id='users-table-head')
-            tr
-                th(class='table-head-element') Name
-                th(class='table-head-element') Username
-                th(class='table-head-element') Email
-        tbody(id='users-table-body')
-            each user in users
-                tr
-                    td(class='table-body-element')= user.full_name
-                    td(class='table-body-element')= user.username
-                    td(class='table-body-element')= user.email
+    div.main-container
+        main.users-container
+            table.table
+                thead
+                    tr#users-table-head
+                        th(class='header_text_style') Name
+                        th(class='header_text_style') Username
+                        th(class='header_text_style') Email
+                tbody#users-table
+                    each user in users
+                        tr#users-table-body
+                            td(class='column one body')= user.full_name
+                            td(class='column two body')= user.username
+                            td(class='column three body')= user.email
+        aside.sidebar
+            div.card-containers
+                article.card
+                    header
+                        h2.card-headers An Interesting Article
+                        img(src='https://static.hkej.com/eji/images/2014/09/04/892989_91a10c6cfe22af72bff92362cc444353.jpg')
+                        div.content
+                            p This is an interesting article about the latest trending tunes. Some tunes were made by famous producers, while some tunes were made by some nobodies. This song was made by this cat.
+                article.card
+                    header
+                        h2.card-headers Look Second Card
+                        img(src='https://static.hkej.com/eji/images/2014/09/04/892989_91a10c6cfe22af72bff92362cc444353.jpg')
+                        div.content
+                            p This is an interesting article about the latest second cards. Some cards were made by famous programmers, while some cards were made by me. Some cards were made by this same cat.
