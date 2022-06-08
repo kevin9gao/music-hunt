@@ -1,15 +1,15 @@
 extends layout.pug
 
 block content
-    table
-        thead
+    table(class='table')
+        thead(id='users-table-head')
             tr
-                th Name
-                th Username
-                th Email
-        tbody
+                th(class='table-head-element') Name
+                th(class='table-head-element') Username
+                th(class='table-head-element') Email
+        tbody(id='users-table-body')
             each user in users
                 tr
-                    td= user.full_name
-                    td= user.username
-                    td= user.email
+                    td(class='table-body-element')= user.full_name
+                    td(class='table-body-element')= user.username
+                    td(class='table-body-element')= user.email
