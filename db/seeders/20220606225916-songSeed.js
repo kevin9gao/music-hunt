@@ -12,7 +12,7 @@ module.exports = {
         {
         name: "DemoLand",
         artistId: 1,
-        albumArt: "",
+        albumArt: "https://stream.org/wp-content/uploads/Apocalypse-scene.jpg",
         description: "the land of Mr. Demo",
         createdAt: new Date(),
         updatedAt: new Date()

@@ -1,0 +1,23 @@
+extends layout.pug
+
+block content
+    table
+        thead
+            tr
+                th Song Name
+                th Song Artist
+                th Album
+                th Description
+                th Upvotes
+
+        tbody
+            each song in songs
+                tr
+                    td= song.name
+                    td= users[song.artistId - 1].username
+                    td
+                        img(src=song.albumArt)
+                    //- td= song.users.username
+                    td= song.description
+                    //- td= song.songupvotes
+                    //- td= song.songupvote
