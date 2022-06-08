@@ -88,7 +88,6 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, 
   })
 
   const validatorErrors = validationResult(req);
-  // console.log(validationResult(req))
 
   if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
