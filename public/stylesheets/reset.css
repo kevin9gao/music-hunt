@@ -1,6 +1,11 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+
+a,
+button {
+  cursor: pointer;
 }
 
 a {
@@ -24,4 +29,88 @@ body, header, nav {
 
 h1 {
   font-size: 2rem;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(248, 248, 248);
+  align-items: center;
+  justify-content: space-between;
+}
+
+#snakey {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+#logged-in {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#logged-out {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#logged-in p,
+#logged-in form,
+#logged-out p,
+#logged-out form {
+  margin: 10px;
+}
+
+#sign-up {
+  height: 40px;
+  width: 80px;
+  color: white;
+  background-color: #e1490d;
+  border: none;
+  border-radius: 5px;
+  font: 14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  font-weight: 500;
+}
+
+.users-links {
+  border: none;
+  font: 16px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  color: #4b587c;
+}
+
+/* #sign-up:hover {
+  transition: all .3s ease-in;
+  background-color: linear-gradient(227deg, #ff4582, #e12e0d);
+} */
+
+.users-links:hover {
+  transition: ease-in;
+  transition-delay: 500;
+  color: #f54906;
+}
+
+
+
+
+/* /users */
+
+.table {
+  display: grid;
+  grid-template-areas:
+  'head head head'
+  'body'
+  ;
+}
+
+.table-head-element {
+  grid-area: head;
+}
+
+
+.table-body-element {
+  grid-area: body;
 }
