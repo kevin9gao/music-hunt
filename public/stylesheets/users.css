@@ -1,13 +1,13 @@
 table {
   display: grid;
   border-collapse: collapse;
-  min-width: 60%;
-  max-width: 60%;
+  width: 60%;
   grid-template-columns:
     minmax(150px, 1fr)
     minmax(150px, 1.33fr)
     minmax(150px, 1.33fr);
   max-width: 80%;
+  margin: 20px;
 }
 
 thead,
@@ -46,4 +46,28 @@ td {
 
 tr:nth-child(even) td {
   background: #f8f6ff;
+}
+
+aside {
+  width: 40%;
+  padding-left: 2em;
+  margin-left: 2em;
+  float: right;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: inset 5px 0 5px -5px gray;
+}
+
+.card-containers {
+  width: 50%
+}
+
+.card img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-headers {
+  text-align: center;
 }
