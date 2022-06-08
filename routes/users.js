@@ -42,16 +42,16 @@ const userValidators = [
     .withMessage('Please enter a username.')
     .isLength({ max: 50 })
     .withMessage('Username cannot be longer than 50 characters.')
-    .custom(async (value) => {
+    .custom(value => {
       if (value === 'demo') {
         return Promise.reject("Username reserved for demos.")
-      }
+      } else return true
     })
     .custom(async (value) => {
       const user = await db.User.findOne({where: { username: value } });
       if (user) {
         return Promise.reject('Username is already in use.')
-      }
+      } else return true
     }),
   check('full_name')
     .exists({ checkFalsy: true })
@@ -92,9 +92,10 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, 
   if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
-    user.save();
+    await user.save();
     loginUser(req, res, user);
-    req.session.save(( ) => res.redirect('/'));
+    req.session.save(() => res.redirect('/'));
+
   } else {
     const errors = validatorErrors.array().map(error => error.msg);
     res.render('signup-form', {
