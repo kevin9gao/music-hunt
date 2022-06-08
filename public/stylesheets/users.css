@@ -10,13 +10,17 @@ main {
 }
 
 
+.users-container {
+  width: 70%;
+}
+
 
 table {
   display: grid;
   border-collapse: collapse;
   width: 80%;
   grid-template-columns:
-    minmax(150px, 1fr)
+    minmax(200px, 1fr)
     minmax(150px, 1.33fr)
     minmax(150px, 1.33fr);
   max-width: 80%;
@@ -29,6 +33,16 @@ tr {
   display: contents;
 }
 
+
+.header_text_style {
+  color: #21293c;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+      sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+}
+
 th,
 td {
   padding: 15px;
@@ -39,7 +53,6 @@ td {
 
 th {
   top: 80px;
-  background: #abb2e4;
   text-align: left;
   font-weight: normal;
   font-size: 1.1rem;
@@ -60,7 +73,8 @@ tr:nth-child(even) td {
   background: #f8f6ff;
 }
 
-aside {
+
+.sidebar {
   width: 40%;
   padding-left: 2em;
   margin-left: 2em;

@@ -1,0 +1,78 @@
+extends layout
+
+append head
+  title= title
+  link(rel='stylesheet' href='/stylesheets/home.css')
+  script(src="/javascripts/index.js" type="module" defer)
+block content
+  div.main_content_container
+    main.songs_container
+      div
+        div#song_header
+          div.header_text_style#song_header= 'Trending Music 👇'
+          div.sub_header_text_style= 'Featured'
+        //- TODO instead use find operator to dry up code with limit 5 order by upvotes
+        div.song
+          a(href='/songs/1')
+            img.song_img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkC9d3JwY2mLk0rOzSa2vOGAwQFbh3OUEkvw&usqp=CAU')
+          div.song_info
+            a(href='/songs/1')
+              div#song_name='Song Name'
+              div#song_artist='Artist Name'
+          div.upvotes
+            button.upvote_button(type='button')
+              div
+                div='^'
+                div='#'
+        div.song
+          a(href='/songs/1')
+            img.song_img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkC9d3JwY2mLk0rOzSa2vOGAwQFbh3OUEkvw&usqp=CAU')
+          div.song_info
+            a(href='/songs/1')
+              div#song_name='Song Name'
+              div#song_artist='Artist Name'
+          div.upvotes
+            button.upvote_button(type='button')
+              div
+                div='^'
+                div='#'
+        div.song
+          a(href='/songs/1')
+            img.song_img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkC9d3JwY2mLk0rOzSa2vOGAwQFbh3OUEkvw&usqp=CAU')
+          div.song_info
+            a(href='/songs/1')
+              div#song_name='Song Name'
+              div#song_artist='Artist Name'
+          div.upvotes
+            button.upvote_button(type='button')
+              div
+                div='^'
+                div='#'
+        div.song
+          a(href='/songs/1')
+            img.song_img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkC9d3JwY2mLk0rOzSa2vOGAwQFbh3OUEkvw&usqp=CAU')
+          div.song_info
+            a(href='/songs/1')
+              div#song_name='Song Name'
+              div#song_artist='Artist Name'
+          div.upvotes
+            button.upvote_button(type='button')
+              div
+                div='^'
+                div='#'
+        div.song
+          a(href='/songs/1')
+            img.song_img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkC9d3JwY2mLk0rOzSa2vOGAwQFbh3OUEkvw&usqp=CAU')
+          div.song_info
+            a(href='/songs/1')
+              div#song_name='Song Name'
+              div#song_artist='Artist Name'
+          div.upvotes
+            button.upvote_button(type='button')
+              div
+                div='^'
+                div='#'
+
+    aside.sidebar
+      div= 'test2'
+      div= 'test3'

@@ -5,47 +5,31 @@ append head
     link(rel='stylesheet' href='/stylesheets/users.css')
     script(src="/javascripts/index.js" type="module" defer)
 block content
-    div(class='main-container')
-        main(class='users-container')
-            table(class='table')
+    div.main-container
+        main.users-container
+            table.table
                 thead
-                    tr(id='users-table-head')
-                        th(class='column one head') Name
-                        th(class='column two head') Username
-                        th(class='column three head') Email
-                tbody(id='users-table')
+                    tr#users-table-head
+                        th(class='header_text_style') Name
+                        th(class='header_text_style') Username
+                        th(class='header_text_style') Email
+                tbody#users-table
                     each user in users
-                        tr(id='users-table-body')
+                        tr#users-table-body
                             td(class='column one body')= user.full_name
                             td(class='column two body')= user.username
                             td(class='column three body')= user.email
-        aside(class='sidebar')
-            div(class='card-containers')
-                article(class='card')
+        aside.sidebar
+            div.card-containers
+                article.card
                     header
-                        h2(class='card-headers') An Interesting Article
+                        h2.card-headers An Interesting Article
                         img(src='https://static.hkej.com/eji/images/2014/09/04/892989_91a10c6cfe22af72bff92362cc444353.jpg')
-                        div(class='content')
+                        div.content
                             p This is an interesting article about the latest trending tunes. Some tunes were made by famous producers, while some tunes were made by some nobodies. This song was made by this cat.
-                article(class='card')
+                article.card
                     header
-                        h2(class='card-headers') Look Second Card
+                        h2.card-headers Look Second Card
                         img(src='https://static.hkej.com/eji/images/2014/09/04/892989_91a10c6cfe22af72bff92362cc444353.jpg')
-                        div(class='content')
+                        div.content
                             p This is an interesting article about the latest second cards. Some cards were made by famous programmers, while some cards were made by me. Some cards were made by this same cat.
-
-
-        //- div(class='users-headers')
-        //-     div(class='column one header') Name
-        //-     div(class='column two header') Username
-        //-     div(class='column three header') Email
-        //- div(class='users-body')
-        //-     div(class='column one body')
-        //-         each user in users
-        //-             div= user.full_name
-        //-     div(class='column two body')
-        //-         each user in users
-        //-             div= user.username
-        //-     div(class='column three body')
-        //-         each user in users
-        //-             div= user.email
