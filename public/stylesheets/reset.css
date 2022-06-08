@@ -37,6 +37,7 @@ h1 {
   background-color: rgb(248, 248, 248);
   align-items: center;
   justify-content: space-between;
+  height: 80px;
 }
 
 #snakey {
@@ -91,26 +92,4 @@ h1 {
   transition: ease-in;
   transition-delay: 500;
   color: #f54906;
-}
-
-
-
-
-/* /users */
-
-.table {
-  display: grid;
-  grid-template-areas:
-  'head head head'
-  'body'
-  ;
-}
-
-.table-head-element {
-  grid-area: head;
-}
-
-
-.table-body-element {
-  grid-area: body;
 }

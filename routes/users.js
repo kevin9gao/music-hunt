@@ -42,7 +42,7 @@ const userValidators = [
     .withMessage('Please enter a username.')
     .isLength({ max: 50 })
     .withMessage('Username cannot be longer than 50 characters.')
-    .custom(value => {
+    .custom(async (value) => {
       if (value === 'demo') {
         return Promise.reject("Username reserved for demos.")
       }
