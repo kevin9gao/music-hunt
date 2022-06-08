@@ -12,12 +12,20 @@ block content
 
         tbody
             each song in songs
+                - count =0
+                each songUpvote in songUpvotes
+                    if (songUpvote.songId === song.id)
+                        //- count +=1
+                        - count +=1
+
                 tr
                     td= song.name
                     td= users[song.artistId - 1].username
                     td
-                        img(src=song.albumArt)
+                        img(src=song.albumArt class="songPic")
                     //- td= song.users.username
                     td= song.description
-                    //- td= song.songupvotes
+
+                    td= count
+
                     //- td= song.songupvote

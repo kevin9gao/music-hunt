@@ -11,17 +11,17 @@ router.get('/', asyncHandler(async(req, res) => {
     const users = await db.User.findAll();
     const songUpvotes = await db.SongUpvote.findAll();
     const songs = await db.Song.findAll(
-    //     {
-    //     includes: [users, songUpvotes]
-    // }
+    {
+        // includes: [songUpvotes]
+    }
     );
-
+    console.log(songs)
     // // const songgenres = await db.SongGenre.findAll();
 
-    // let count = 0;
+    let count = 0;
 
 
-    res.render('songs', {songs, users, songUpvotes});
+    res.render('songs', {songs, users, songUpvotes, count});
 }));
 
 module.exports = router;
