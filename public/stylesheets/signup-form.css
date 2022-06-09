@@ -1,0 +1,135 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  display: block;
+  overflow: hidden;
+  font: 16px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+
+div {
+  display: block;
+}
+
+.main-container {
+  min-height: 100%;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.left-block {
+  width: 40%;
+  height: 100%;
+  background-color: #e8e8e8;
+  padding: 25px 0;
+  z-index: 1;
+  display: block;
+}
+
+.left-block-container {
+  width: calc(100% + 50px);
+  height: 84%;
+  background-color: white;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.form-container {
+  width: 500px;
+}
+
+.logo-wrapper img {
+  height: 40px;
+  margin-bottom: 50px;
+}
+
+.logo-wrapper p {
+  display: inline-block;
+  position: relative;
+  left: .8em;
+  bottom: 3.1em;
+  color: #004bff;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#hey-there {
+  line-height: 50px;
+  margin: 0 0 10px;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+#hey-subtext {
+  line-height: 32px;
+  margin: 0 0 20px;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+#signup-form {
+  display: block;
+}
+
+.input-wrappers {
+  width: 80%;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.inputs {
+  border-radius: 3px;
+  border: 1px solid #6f7781;
+  height: 35px;
+  width: 100%;
+  outline: none;
+  margin-top: 10px;
+}
+
+.inputs:hover,
+.inputs:focus {
+  cursor: text;
+  border: 1px solid #6492b8;
+}
+
+.button-wrappers {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 80%;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.button-wrappers button {
+  height: 40px;
+  width: 50%;
+  color: white;
+  background-color: #004bff;
+  border: none;
+  border-radius: 5px;
+  font: 14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  font-weight: 500;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.right-block {
+  background-color: rgb(1, 2, 24);
+  position: relative;
+  width: 60%;
+  height: 100%;
+  padding-left: 50px;
+  background-image: url('https://axerosolutions.com/assets/Uploaded-CMS-Files/1c3bc747-fef3-4ce9-a3ae-dc94f44fbcb1.jpg');
+}
