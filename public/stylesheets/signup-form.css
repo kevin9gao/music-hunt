@@ -7,7 +7,7 @@ body {
   height: 100%;
   margin: 0;
   display: block;
-  overflow: hidden;
+  overflow: overlay;
   font: 16px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
 }
 
@@ -16,13 +16,12 @@ div {
 }
 
 .main-container {
-  /* min-height: 100%; */
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .left-block {
@@ -40,7 +39,7 @@ div {
   background-color: white;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  padding: 50px 0;
+  padding: 3em 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -48,19 +47,23 @@ div {
 }
 
 .form-container {
-  width: 500px;
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .logo-wrapper img {
   height: 40px;
-  margin-bottom: 50px;
+  margin-bottom: auto;
 }
 
 .logo-wrapper p {
   display: inline-block;
   position: relative;
   left: .8em;
-  bottom: 3.1em;
+  bottom: .7em;
   color: #004bff;
   font-weight: bold;
   font-size: 20px;
@@ -81,19 +84,25 @@ div {
 }
 
 #signup-form {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  align-items: flex-start;
+  width: 100%;
+  /* position: relative; */
+  /* bottom: auto; */
 }
 
 .input-wrappers {
   width: 80%;
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 1em;
 }
 
 .inputs {
   border-radius: 3px;
   border: 1px solid #6f7781;
-  height: 35px;
+  height: 3em;
   width: 100%;
   outline: none;
   margin-top: 10px;
@@ -136,4 +145,5 @@ button:hover {
   height: 100%;
   padding-left: 50px;
   background-image: url('https://axerosolutions.com/assets/Uploaded-CMS-Files/1c3bc747-fef3-4ce9-a3ae-dc94f44fbcb1.jpg');
+  background-size: cover;
 }
