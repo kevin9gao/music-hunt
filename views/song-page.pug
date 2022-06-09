@@ -3,8 +3,28 @@ append head
   link(rel='stylesheet' href='/stylesheets/song-page.css')
   script(src="/javascripts/song-page.js" type="module" defer)
 block content
-    button#myButton= 'test'
-    div#myModal
-      div#modalContent
-        span#close= 'X'
-        p= 'test'
+  div#main-header
+      div#routes
+        a.text-style-1(href="/")= 'Home'
+        span.text-style-1=' → '
+        a.text-style-1(href="/songs")= 'Songs'
+        span.text-style-1=' → '
+        a.text-style-1(href=`/songs/${song.id}/${song.name}`)= `${song.name}`
+      div#song-container
+        div
+          img(src=`${song.albumArt}`)
+        div#song-info
+          div
+            h1#song-name= `${song.name}`
+            h2#artist-name= `${song.User.username}`
+          div
+            button#visit
+            button#upvote
+              div
+              div
+
+      div#description
+  div#related-songs= 'test'
+  div#comment-container= 'test'
+      div#comment-box
+      div#comments

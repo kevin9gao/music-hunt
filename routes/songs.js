@@ -6,15 +6,14 @@ const db = require('../db/models');
 
 
 router.get('/', asyncHandler(async (req, res) => {
-    const users = await db.User.findAll();
     const songUpvotes = await db.SongUpvote.findAll();
     const songs = await db.Song.findAll(
         {
-            // includes: [songUpvotes]
+            include: [db.User]
         }
     );
     let count = 0;
-    res.render('songs', { songs, users, songUpvotes, count });
+    res.render('songs', { songs, songUpvotes, count });
 }));
 
 router.post('/upvote/:id', async (req, res) => {
@@ -117,10 +116,15 @@ router.post('/new', csrfProtection, songsValidators, asyncHandler(async (req, re
 
 router.get('/:id/:name', asyncHandler(async (req, res) => {
     const songId = req.params.id;
-    const song = await db.Song.findByPk(songId);
+    const song = await db.Song.findOne({
+        where: {
+            id: songId,
+        },
+        include: [db.User]
+    })
 
     res.render('song-page', {
-        song
+        song,
     })
 }));
 
