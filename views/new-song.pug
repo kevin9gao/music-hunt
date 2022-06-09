@@ -1,0 +1,26 @@
+extends layout.pug
+
+block content
+ if errors
+    p The following errors took place:
+      ul
+        each error in errors
+          li= error
+ form(action="/songs/new" method="post")
+    input(type='hidden' name="_csrf" value=csrfToken)
+    br
+    label Song Name
+    input(type="text" name="name" value=song.name required)
+    br
+    Label Spotify Song Link
+    input(type="text" name="urlLink" value=song.urlLink required)
+    br
+    Label Album Art Image Link
+    input(type="text" name="albumArt" value=song.albumArt)
+    br
+    Label Description
+    br
+    textarea(name="description", value=song.description cols="30", rows="5")
+    br
+    br
+    button Upload Song

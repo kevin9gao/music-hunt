@@ -19,7 +19,6 @@ router.get('/', asyncHandler(async (req, res, next) => {
 router.get('/signup', csrfProtection, (req, res) => {
   const user = db.User.build();
   res.render('signup-form', {
-    title: 'Sign Up',
     user,
     csrfToken: req.csrfToken(),
   });
@@ -95,6 +94,7 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, 
     await user.save();
     loginUser(req, res, user);
     req.session.save(() => res.redirect('/'));
+
   } else {
     const errors = validatorErrors.array().map(error => error.msg);
     res.render('signup-form', {
