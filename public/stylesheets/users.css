@@ -9,9 +9,11 @@ main {
   display: flex;
 }
 
+
 .users-container {
   width: 70%;
 }
+
 
 table {
   display: grid;
@@ -30,6 +32,7 @@ tbody,
 tr {
   display: contents;
 }
+
 
 .header_text_style {
   color: #21293c;
@@ -69,6 +72,7 @@ td {
 tr:nth-child(even) td {
   background: #f8f6ff;
 }
+
 
 .sidebar {
   width: 40%;
