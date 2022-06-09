@@ -168,7 +168,7 @@ router.post('/logout', (req, res) => {
   req.session.save(() => res.redirect('/users/login'));
 })
 
-router.post('/demo', asyncHandler(async (req, res) => {
+router.post('/demoUser', asyncHandler(async (req, res) => {
   let demoUser = await db.User.findOne({ where: { username: 'demo' } });
   if (!demoUser) {
     const password = 'demologin';
@@ -186,13 +186,17 @@ router.post('/demo', asyncHandler(async (req, res) => {
   req.session.save(( ) => res.redirect('/users'));
 }));
 
-router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
-  const user = await db.User.findByPk(req.params.id);
+router.get('/:id', asyncHandler(async (req, res, next) => {
+  const user = await db.User.findOne({
+    where: { username: req.params.id }
+  });
+
+  // console.log(user.id);
+
   const songs = await db.Song.findAll({
     where: {
       artistId: user.id
     },
-    // include: songId.songs.id
 
   });
 
@@ -205,18 +209,55 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
   // console.log (user)
   // console.log(songs)
   // console.log(songUpvotes)
+
   res.render('profile', { title: "Profile Page", user, songs }) //remenber to include songUpvotes
 
 }))
 
-router.patch('/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {
+router.get('/:id/edit', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {
 
-  const { profileImg, bio } = req.body;
-  const newProfile = await db.User.create({ profileImg, bio });
-  res.status(201).json()
+  const user = await db.User.findOne({
+    where: { username: req.params.id }
+  })
 
+  res.render('edit-profile', {
+    user,
+    csrfToken: req.csrfToken()
+  });
+}))
 
+router.post('/:id', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {
+
+  const user = await db.User.findOne({
+    where: { username: req.params.id }
+  })
+
+  const { profilePic, full_name, biography } = req.body;
+
+  await user.update({
+    profilePic,
+    full_name, //placeholder until it successfully updates database
+    biography
+  });
+
+  await user.save();
+
+  // const newUser = await db.User.create({
+  //   username: user.username,
+  //   hashedPassword: user.hashedPassword,
+  //   full_name: 'Isaac',
+  // })
+
+  // await user.destroy();
+
+  // user = newUser;
+
+  res.redirect(`/users/${user.username}`)
+
+  // res.status(201).json()
 
 }))
+
+router.get('/')
 
 module.exports = router;

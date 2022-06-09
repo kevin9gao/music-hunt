@@ -15,12 +15,14 @@ html
         div#logged-in
           if user
             p#welcome-user= `Welcome, ${user.full_name}`
+          form(action=`/users/${user.username}/edit` method='get')
+            button Edit Profile
           form(action='/users/logout' method='post' class='log-in_sign-up')
             button(type='submit' class='users-links') Log Out
       else
         div#logged-out
           p Logged Out
-          form(action='/users/demo' method='post' class='log-in_sign-up')
+          form(action='/users/demoUser' method='post' class='log-in_sign-up')
             button.users-links Demo Login
           form(action='/users/login' method='get' class='log-in_sign-up')
             button.users-links Log In
