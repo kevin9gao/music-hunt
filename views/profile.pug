@@ -1,0 +1,28 @@
+extends layout.pug
+
+block content
+    table
+        thead
+            tr
+                //- th Profile Image
+                th Full Name
+                th Full Name
+                th Email
+                th Songs Uploaded
+
+        tbody
+
+            tr
+                //- td
+                //-     img(src=user.profilePic class="ProfilePic")
+                td= user.full_name
+                td= user.username
+                td= user.email
+            each song in songs
+                td= song.name
+
+
+                //- each songUpvote in songUpvotes
+                //-     if (songUpvote.songId === song.id)
+                //-         - count +=1
+                //- td= count

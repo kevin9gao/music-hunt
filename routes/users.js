@@ -5,7 +5,8 @@ const { check, oneOf, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
 const db = require('../db/models');
-const { loginUser, logoutUser } = require('./auth');
+const { loginUser, logoutUser, requireAuth } = require('./auth');
+const { locals } = require('../app');
 
 /* GET users listing. */
 router.get('/', asyncHandler(async (req, res, next) => {
@@ -184,6 +185,40 @@ router.post('/demo', asyncHandler(async (req, res) => {
 
   loginUser(req, res, demoUser);
   req.session.save(( ) => res.redirect('/users'));
+}));
+
+router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+  const user = await db.User.findByPk(req.params.id);
+  const songs = await db.Song.findAll({
+    where: {
+      artistId: user.id
+    },
+    // include: songId.songs.id
+
+  });
+
+  // const songUpvotes = await db.SongUpvote.findAll({
+  //   where: {
+  //     songId: songs.song.id
+  //   },
+  // });
+
+  // console.log (user)
+  // console.log(songs)
+  // console.log(songUpvotes)
+  res.render('profile', { title: "Profile Page", user, songs }) //remenber to include songUpvotes
+
+}))
+
+router.patch('/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {
+
+
+  const { profileImg, bio } = req.body;
+  const newProfile = await db.User.create({ profileImg, bio });
+  res.status(201).json()
+
+
+
 }))
 
 module.exports = router;
