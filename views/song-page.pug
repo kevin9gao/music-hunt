@@ -1,0 +1,10 @@
+extends layout
+append head
+  link(rel='stylesheet' href='/stylesheets/song-page.css')
+  script(src="/javascripts/song-page.js" type="module" defer)
+block content
+    button#myButton= 'test'
+    div#myModal
+      div#modalContent
+        span#close= 'X'
+        p= 'test'

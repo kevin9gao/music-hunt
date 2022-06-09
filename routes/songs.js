@@ -113,6 +113,15 @@ router.post('/new', csrfProtection, songsValidators, asyncHandler(async (req, re
         }
 
     } else req.session.save(() => res.redirect('/users/login'))
-}))
+}));
+
+router.get('/:id/:name', asyncHandler(async (req, res) => {
+    const songId = req.params.id;
+    const song = await db.Song.findByPk(songId);
+
+    res.render('song-page', {
+        song
+    })
+}));
 
 module.exports = router;

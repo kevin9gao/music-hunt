@@ -1,5 +1,7 @@
 extends layout.pug
-
+append head
+    link(rel='stylesheet' href='/stylesheets/song-page.css')
+    script(src="/javascripts/song-page.js" type="module" defer)
 block content
     table
         thead
@@ -23,10 +25,14 @@ block content
                 tr
                     td
                         img(src=song.albumArt class="songPic" height="150px" width="150px")
+                    td#myButton= 'test'
+                        button
+                        div#myModal
+                            div#modalContent
+                                span#close= 'X'
+                                p= 'test'
                     td
-                        a(href=`http://localhost:8080/songs/${song.id}`)= song.name
-                    td
-                        a(href=`http://localhost:8080/songs/${artistName}`)= artistName
+                        a(href=`/songs/${artistName}`)= artistName
                     td
                      iframe(style = "border-radius:12px" src = `${link.slice(0, -20)}?utm_source=generator` width = "100%" height = "80" frameBorder = "0" allowfullscreen = "" allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture")
 
