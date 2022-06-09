@@ -1,0 +1,100 @@
+.main-container {
+  display: flex;
+  flex-direction: row;
+  max-width: 1280px;
+  margin: 40px auto 0 auto;
+}
+
+main {
+  display: flex;
+}
+
+
+.users-container {
+  width: 70%;
+}
+
+
+table {
+  display: grid;
+  border-collapse: collapse;
+  width: 80%;
+  grid-template-columns:
+    minmax(200px, 1fr)
+    minmax(150px, 1.33fr)
+    minmax(150px, 1.33fr);
+  max-width: 80%;
+  margin: 20px;
+}
+
+thead,
+tbody,
+tr {
+  display: contents;
+}
+
+
+.header_text_style {
+  color: #21293c;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+      sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+}
+
+th,
+td {
+  padding: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+th {
+  top: 80px;
+  text-align: left;
+  font-weight: normal;
+  font-size: 1.1rem;
+  color: white;
+}
+
+th:last-child {
+  border: 0;
+}
+
+td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #808080;
+}
+
+tr:nth-child(even) td {
+  background: #f8f6ff;
+}
+
+
+.sidebar {
+  width: 40%;
+  padding-left: 2em;
+  margin-left: 2em;
+  float: right;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: inset 5px 0 5px -5px gray;
+}
+
+.card-containers {
+  width: 50%
+}
+
+.card img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-headers {
+  text-align: center;
+  color: darkblue;
+}

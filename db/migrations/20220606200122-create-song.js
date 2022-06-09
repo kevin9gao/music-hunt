@@ -12,6 +12,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(50)
       },
+      urlLink: {
+        allowNull: false,
+        type: Sequelize.STRING(255),
+        unique: true
+      },
       artistId: {
         allowNull: false,
         type: Sequelize.INTEGER,

@@ -5,6 +5,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING(50)
     },
+    urlLink: {
+      allowNull: false,
+      type: DataTypes.STRING(255),
+      unique: true
+    },
     artistId: {
       allowNull: false,
       type: DataTypes.INTEGER
@@ -16,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT
     }
   }, {});
-  Song.associate = function(models) {
+  Song.associate = function (models) {
     // associations can be defined here
     Song.belongsTo(models.User, {
       foreignKey: 'artistId'
