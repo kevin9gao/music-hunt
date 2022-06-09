@@ -212,7 +212,6 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 
 router.patch('/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {
 
-
   const { profileImg, bio } = req.body;
   const newProfile = await db.User.create({ profileImg, bio });
   res.status(201).json()
