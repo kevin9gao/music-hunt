@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils');
-const { check, oneOf, validationResult } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
 const db = require('../db/models');
@@ -19,7 +19,6 @@ router.get('/', asyncHandler(async (req, res, next) => {
 router.get('/signup', csrfProtection, (req, res) => {
   const user = db.User.build();
   res.render('signup-form', {
-    title: 'Sign Up',
     user,
     csrfToken: req.csrfToken(),
   });
@@ -32,7 +31,7 @@ const userValidators = [
     .isEmail()
     .withMessage('Please provide a valid email.')
     .custom(async (value) => {
-      const user = await db.User.findOne({where: { email: value } });
+      const user = await db.User.findOne({ where: { email: value } });
       if (user) {
         return Promise.reject('Email is already in use.')
       }
@@ -48,7 +47,7 @@ const userValidators = [
       } else return true
     })
     .custom(async (value) => {
-      const user = await db.User.findOne({where: { username: value } });
+      const user = await db.User.findOne({ where: { username: value } });
       if (user) {
         return Promise.reject('Username is already in use.')
       } else return true
@@ -117,15 +116,15 @@ const loginValidators = [
 ]
 
 router.get('/login', csrfProtection,
-  async(req, res) => {
+  async (req, res) => {
     res.render('login-form', {
       title: "Login",
       csrfToken: req.csrfToken()
     })
-});
+  });
 
 router.post('/login', csrfProtection, loginValidators,
-  asyncHandler(async(req, res) => {
+  asyncHandler(async (req, res) => {
 
     const { login, password } = req.body;
 
@@ -136,9 +135,9 @@ router.post('/login', csrfProtection, loginValidators,
     if (validatorErrors.isEmpty()) {
 
       if (login.includes('@')) {
-        user = await db.User.findOne({where: { email: login }})
+        user = await db.User.findOne({ where: { email: login } })
       } else {
-        user = await db.User.findOne({where: {username: login}})
+        user = await db.User.findOne({ where: { username: login } })
       }
 
       if (user !== null) {
@@ -146,7 +145,7 @@ router.post('/login', csrfProtection, loginValidators,
 
         if (passwordMatch) {
           loginUser(req, res, user);
-          return req.session.save(( ) => res.redirect('/'))
+          return req.session.save(() => res.redirect('/'))
         }
       }
       errors.push("Invalid email or password")
@@ -165,7 +164,7 @@ router.post('/login', csrfProtection, loginValidators,
 
 router.post('/logout', (req, res) => {
   logoutUser(req, res);
-  req.session.save(( ) => res.redirect('/users/login'));
+  req.session.save(() => res.redirect('/users/login'));
 })
 
 router.post('/demo', asyncHandler(async (req, res) => {
@@ -183,7 +182,7 @@ router.post('/demo', asyncHandler(async (req, res) => {
   }
 
   loginUser(req, res, demoUser);
-  req.session.save(( ) => res.redirect('/users'));
+  req.session.save(() => res.redirect('/users'));
 }))
 
 module.exports = router;
