@@ -5,26 +5,26 @@ append head
 block content
   div#main-header
       div#routes
-        a.text-style-1(href="/")= 'Home'
-        span.text-style-1='→'
-        a.text-style-1(href="/songs")= 'Songs'
-        span.text-style-1='→'
-        a.text-style-1(href=`/songs/${song.id}/${song.name}`)= `${song.name}`
+        a.text-style-1(href="/") Home
+        span.text-style-1 →
+        a.text-style-1(href="/songs") Songs
+        span.text-style-1 →
+        a.text-style-1(href=`/songs/${song.id}/${song.name}`)= song.name
       div#song-container
         div
-          img(src=`${song.albumArt}`)
+          img(src=song.albumArt)
         div#song-info
           div
-            h1#song-name= `${song.name}`
-            h2#artist-name= `${song.User.username}`
+            h1#song-name= song.name
+            h2#artist-name= song.User.username
           div#visit-upvote-container
             button#visit-button
               //- TODO Change to href='profile page'
-              a(href='/')#visit= 'Visit'
+              a(href='/')#visit Visit
             button#upvote-button
               div#upvote-container
                 div#upvote-img
-                div#upvote-text= 'UPVOTE ###'
+                div#upvote-text UPVOTE ###
       div#description
         p= song.description
         div
@@ -36,13 +36,18 @@ block content
   div#related-title
     //- TODO Include img link to be song.User.profilePic
     img(src=song.albumArt).img-size-1
-    div= 'More from this artist . . .'
+    div More from this artist . . .
   div#related-container.text-style-1
       each song in relatedSongs
         a(href=`/songs/${song.id}/${song.name}`).related-song
           img(src=song.albumArt).img-size-2
           div.centered= song.name
-  div#comment-container= 'test'
+  div#comment-container test
       div#comment-container
         form(action='/comments/new' method='post')
+          input(type='hidden' name='_csrf' value=csrfToken)
+          textarea(name='body')
+          input(type='hidden' name='songId' value=song.id)
+          input(type='hidden' name='songName' value=song.name)
+          button Comment
       div#comments

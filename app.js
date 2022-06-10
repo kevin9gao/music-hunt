@@ -10,6 +10,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const songsRouter = require('./routes/songs');
+const commentsRouter = require('./routes/comments');
 const genresRouter = require('./routes/genres');
 const { restoreUser } = require('./routes/auth');
 
@@ -43,6 +44,7 @@ app.use(restoreUser);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/songs', songsRouter);
+app.use('/comments', commentsRouter);
 app.use('/genres', genresRouter);
 
 

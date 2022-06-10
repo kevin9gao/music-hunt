@@ -83,6 +83,7 @@ const songsValidators = [
 
 router.post('/new', csrfProtection, songsValidators, asyncHandler(async (req, res) => {
     let { name, urlLink, albumArt, description } = req.body
+
     if (req.session.auth) {
         const { userId } = req.session.auth
 
@@ -115,7 +116,7 @@ router.post('/new', csrfProtection, songsValidators, asyncHandler(async (req, re
     } else req.session.save(() => res.redirect('/users/login'))
 }));
 
-router.get('/:id/:name', asyncHandler(async (req, res) => {
+router.get('/:id/:name', csrfProtection, asyncHandler(async (req, res) => {
     const songId = req.params.id;
 
     const song = await db.Song.findOne({
@@ -141,6 +142,7 @@ router.get('/:id/:name', asyncHandler(async (req, res) => {
     res.render('song-page', {
         song,
         relatedSongs,
+        csrfToken: req.csrfToken(),
     })
 }));
 
