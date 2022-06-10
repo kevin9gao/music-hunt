@@ -47,7 +47,7 @@ module.exports = {
       },
       {
         name: "Banksy",
-        artistId: 7,
+        artistId: 8,
         urlLink: "https://open.spotify.com/track/7qhIVhh8NG2VQ0SnIT8clV?si=a496e16e1f5b4f9a",
         albumArt: "https://assets.phillips.com/image/upload/t_Website_LotDetailMainImage/v1/auctions/EX010818/19_001.jpg",
         description: "Performed by Ninexcix, Written by Job Woo",
@@ -56,7 +56,7 @@ module.exports = {
       },
       {
         name: "SHPRITE",
-        artistId: 7,
+        artistId: 8,
         urlLink: "https://open.spotify.com/track/1TWfCxeMpNJQpxJXBpFHXF?si=e33223d2a37148ae",
         albumArt: "https://i1.sndcdn.com/artworks-yWjBoYI5u0YUqDXY-7LsBOQ-t500x500.jpg",
         description: "Performed by Ninexcix, Written by Job Woo",
@@ -65,7 +65,7 @@ module.exports = {
       },
       {
         name: "AREA 599",
-        artistId: 7,
+        artistId: 8,
         urlLink: "https://open.spotify.com/track/1NyKYloLpEgLImPhwSxsXj?si=0c86ad655ff942bc",
         albumArt: "https://m.media-amazon.com/images/I/81E+JmfUqrL._SS500_.jpg",
         description: "Performed by Ninexcix, Written by Job Woo",
@@ -74,7 +74,7 @@ module.exports = {
       },
       {
         name: "Bohemian Rhapsody",
-        artistId: 8,
+        artistId: 9,
         urlLink: "https://open.spotify.com/track/7tFiyTwD0nx5a1eklYtX2J?si=78b0f92b498645a9",
         albumArt: "https://m.media-amazon.com/images/I/71tMvc0xDPL._SX355_.jpg",
         description: "A Night At The Opera - Remastered 2011 - November 21, 1975 - 2011 Hollywood Records, Inc.",
@@ -83,7 +83,7 @@ module.exports = {
       },
       {
         name: "Don't Stop Me Now",
-        artistId: 8,
+        artistId: 9,
         urlLink: "https://open.spotify.com/track/7hQJA50XrCWABAu5v6QZ4i?si=4720e26fe1d94244",
         albumArt: "https://upload.wikimedia.org/wikipedia/en/0/06/Queen_Jazz.png",
         description: "Jazz - Remastered 2011 - November 10, 1978 - 2011 Hollywood Records, Inc.",
@@ -92,7 +92,7 @@ module.exports = {
       },
       {
         name: "Another One Bites The Dust",
-        artistId: 8,
+        artistId: 9,
         urlLink: "https://open.spotify.com/track/57JVGBtBLCfHw2muk5416J?si=035debc660bf4e9b",
         albumArt: "https://upload.wikimedia.org/wikipedia/en/1/16/Queen_The_Game.png",
         description: "The Game - Remastered 2011 - June 27, 1980 - 2011 Hollywood Records, Inc.",
@@ -101,7 +101,7 @@ module.exports = {
       },
       {
         name: "Under Pressure",
-        artistId: 8,
+        artistId: 9,
         urlLink: "https://open.spotify.com/track/11IzgLRXV7Cgek3tEgGgjw?si=3342dd1350294922",
         albumArt: "https://upload.wikimedia.org/wikipedia/en/3/3c/Queen_Hot_Space.png",
         description: "Hot Space - Remastered 2011 - May 3, 1982 - 2011 Hollywood Records, Inc.",
@@ -110,7 +110,7 @@ module.exports = {
       },
       {
         name: "We Will Rock You",
-        artistId: 8,
+        artistId: 9,
         urlLink: "https://open.spotify.com/track/54flyrjcdnQdco7300avMJ?si=1e14fa1179504a79",
         albumArt: "https://upload.wikimedia.org/wikipedia/en/e/ea/Queen_News_Of_The_World.png",
         description: "News Of The World - Remastered 2011 - October 28, 1977 - 2011 Hollywood Records, Inc.",
@@ -119,7 +119,7 @@ module.exports = {
       },
       {
         name: "We Are The Champions",
-        artistId: 8,
+        artistId: 9,
         urlLink: "https://open.spotify.com/track/7ccI9cStQbQdystvc6TvxD?si=5d1d81b3a51a470f",
         albumArt: "https://upload.wikimedia.org/wikipedia/en/e/ea/Queen_News_Of_The_World.png",
         description: "News Of The World - Remastered 2011 - October 28, 1977 - 2011 Hollywood Records, Inc.",
