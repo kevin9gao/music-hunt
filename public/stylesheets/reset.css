@@ -67,9 +67,11 @@ h1 {
   margin: 10px;
 }
 
-#sign-up {
+#sign-up,
+#edit-profile {
   height: 40px;
   width: 80px;
+  max-width: 200px;
   color: white;
   background-color: #004bff;
   border: none;
@@ -78,12 +80,14 @@ h1 {
   font-weight: 500;
 }
 
-#sign-up:hover {
+#sign-up:hover,
+#edit-profile:hover {
   transition: ease-in all .8s;
   background-image: linear-gradient(to left, #743ad5, #d53a9d);
 }
 
-.users-links {
+.users-links,
+#navbar-profile {
   border: none;
   font: 16px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
   color: #4b587c;
@@ -95,8 +99,13 @@ h1 {
   background-color: linear-gradient(227deg, #ff4582, #e12e0d);
 } */
 
-.users-links:hover {
+.users-links:hover,
+#navbar-profile:hover {
   transition: ease-in;
   transition-delay: 500;
   color: #004bff;
+}
+
+a:visited {
+  text-decoration: underline none;
 }

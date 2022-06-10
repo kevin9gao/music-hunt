@@ -14,9 +14,10 @@ html
       if locals.authenticated
         div#logged-in
           if user
-            p#welcome-user= `Welcome, ${user.full_name}`
+            a(href=`/users/${user.username}` id='navbar-profile')
+              p#welcome-user= `Welcome, ${user.full_name}`
           form(action=`/users/${user.username}/edit` method='get')
-            button Edit Profile
+            button#edit-profile Edit Profile
           form(action='/users/logout' method='post' class='log-in_sign-up')
             button(type='submit' class='users-links') Log Out
       else
