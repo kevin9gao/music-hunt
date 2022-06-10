@@ -1,7 +1,7 @@
 .main-container {
   display: flex;
   flex-direction: row;
-  max-width: 1280px;
+  max-width: 85vw;
   margin: 40px auto 0 auto;
 }
 
@@ -11,7 +11,9 @@ main {
 
 
 .users-container {
-  width: 70%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -20,11 +22,32 @@ table {
   border-collapse: collapse;
   width: 80%;
   grid-template-columns:
-    minmax(200px, 1fr)
+    minmax(80px, 120px)
+    minmax(150px, 1fr)
     minmax(150px, 1.33fr)
-    minmax(150px, 1.33fr);
+    minmax(200px, 2fr)
+    minmax(200px, 2fr);
   max-width: 80%;
   margin: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-pic-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-body-wrappers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 75px;
+  height: fit-content;
 }
 
 thead,
@@ -75,9 +98,9 @@ tr:nth-child(even) td {
 
 
 .sidebar {
-  width: 40%;
-  padding-left: 2em;
-  margin-left: 2em;
+  width: 35%;
+  padding-left: 1em;
+  margin-left: 1em;
   float: right;
   display: inline-flex;
   flex-direction: column;

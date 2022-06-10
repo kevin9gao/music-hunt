@@ -22,6 +22,12 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(100)
       },
+      biography: {
+        type: Sequelize.STRING(500)
+      },
+      profilePic: {
+        type: Sequelize.STRING(255)
+      },
       hashedPassword: {
         allowNull: false,
         type: Sequelize.STRING.BINARY

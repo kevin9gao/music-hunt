@@ -1,0 +1,53 @@
+extends layout.pug
+
+append head
+    title= `Music Hunt - ${user.full_name}`
+    link(rel='stylesheet' href='/stylesheets/profile-page.css')
+    script(src="/javascripts/index.js" type="module" defer)
+
+block content
+    div.header-wrapper
+        div#name-wrapper
+            div#profile-pic-wrapper
+                img(src=user.profilePic).profile-pic
+            div.credentials-wrapper
+                p#full-name= user.full_name
+                p#username= `@${user.username}`
+                p#email= user.email
+                form(action=`/users/${user.username}/edit` method='get')
+                    button#edit-profile-button Edit Profile
+            div#bio-wrapper
+                p#bio-description A little about me:
+                p#biography= user.biography
+
+
+
+
+
+    //- table
+    //-     thead
+    //-         tr
+    //-             th Profile Picture
+    //-             th Full Name
+    //-             th Username
+    //-             th Email
+    //-             th Biography
+    //-             th Songs
+
+    //-     tbody
+
+    //-         tr
+    //-             td
+    //-                 img(src=user.profilePic class="ProfilePic")
+    //-             td= user.full_name
+    //-             td= user.username
+    //-             td= user.email
+    //-             td= user.biography
+    //-             each song in songs
+    //-                 td= song.name
+
+
+                //- each songUpvote in songUpvotes
+                //-     if (songUpvote.songId === song.id)
+                //-         - count +=1
+                //- td= count

@@ -24,9 +24,9 @@ block content
                     td
                         img(src=song.albumArt class="songPic" height="150px" width="150px")
                     td
-                        a(href=`http://localhost:8080/songs/${song.id}`)= song.name
+                        a(href=`/songs/${song.id}`)= song.name
                     td
-                        a(href=`http://localhost:8080/songs/${artistName}`)= artistName
+                        a(href=`/users/${artistName}`)= artistName
                     td
                      iframe(style = "border-radius:12px" src = `${link.slice(0, -20)}?utm_source=generator` width = "100%" height = "80" frameBorder = "0" allowfullscreen = "" allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture")
 

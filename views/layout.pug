@@ -8,19 +8,22 @@ html
     nav.navbar
       div.nav-left
         a(href='/')
-          img(id='snakey' src='https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/974a7a22-c241-4ca5-bd13-4b7071a22147/desayae-6dc8601c-b4bc-4c5c-86d1-dffce3309a17.png/v1/fill/w_880,h_908,q_70,strp/one_silly_snake__named_jake_by_toonidae_desayae-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MzgwOCIsInBhdGgiOiJcL2ZcLzk3NGE3YTIyLWMyNDEtNGNhNS1iZDEzLTRiNzA3MWEyMjE0N1wvZGVzYXlhZS02ZGM4NjAxYy1iNGJjLTRjNWMtODZkMS1kZmZjZTMzMDlhMTcucG5nIiwid2lkdGgiOiI8PTM2ODgifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.u5t-JGEig1FW6hjtsPsAzpVggYoQd9JZhdq1Pi9XvDY')
+          img(id='logo-img' src='https://icon-library.com/images/m-icon/m-icon-7.jpg')
       div.nav-right
 
       if locals.authenticated
         div#logged-in
           if user
-            p#welcome-user= `Welcome, ${user.full_name}`
+            a(href=`/users/${user.username}` id='navbar-profile')
+              p#welcome-user= `Welcome, ${user.full_name}`
+          form(action=`/users/${user.username}/edit` method='get')
+            button#edit-profile Edit Profile
           form(action='/users/logout' method='post' class='log-in_sign-up')
             button(type='submit' class='users-links') Log Out
       else
         div#logged-out
           p Logged Out
-          form(action='/users/demo' method='post' class='log-in_sign-up')
+          form(action='/users/demoUser' method='post' class='log-in_sign-up')
             button.users-links Demo Login
           form(action='/users/login' method='get' class='log-in_sign-up')
             button.users-links Log In
