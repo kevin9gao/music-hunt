@@ -18,11 +18,12 @@ block content
             h1#song-name= song.name
             h2#artist-name= song.User.username
           div#visit-upvote-container
-            if locals.user.username === song.User.username
-              form(action=`/songs/${song.id}/delete` method="post")
-                button#delete-button
-                  div#delete-text-1 Delete
-                  div#delete-text-2 Song?
+            if locals.authenticated
+              if locals.user.username === song.User.username
+                form(action=`/songs/${song.id}/delete` method="post")
+                  button#delete-button
+                    div#delete-text-1 Delete
+                    div#delete-text-2 Song?
                 //- TODO Change to href='profile page'
             button#upvote-button
               div#upvote-container
