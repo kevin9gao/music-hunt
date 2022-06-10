@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+  form(action=`/users/${user.username}` method='post')
+    input(type='hidden' name='_csrf' value=csrfToken)
+    label Profile Picture
+    //- value=user.profilePic.src)
+    input(type="img" name='profilePic' value='')
+    label Full Name
+    input(type="text" name='full_name' value=user.full_name)
+    label Biography
+    //- value=user.biography
+    input(type="text" name='biography' value='')
+    button Submit Changes

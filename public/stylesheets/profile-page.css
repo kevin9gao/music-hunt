@@ -1,0 +1,79 @@
+body {
+  display: block;
+}
+
+.header-wrapper{
+  display: flex;
+  background-image: linear-gradient(0deg, #0233a3 90%, #aac2fa 100%);
+  justify-content: flex-start;
+}
+
+#name-wrapper {
+  display: flex;
+  height: 240px;
+  flex-direction: row;
+  padding: 32px 0;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.profile-pic {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 5px solid white;
+  margin: 0 30px;
+}
+
+.credentials-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.credentials-wrapper > p {
+  color: white;
+  font-weight: 500;
+}
+
+#full-name {
+  font-size: 32px;
+  margin: 0 0 8px 0;
+}
+
+#username {
+  font-size: 18px;
+  line-height: 24px;
+  margin: 8px 0;
+}
+
+#email {
+  font-size: 14px;
+  line-height: 24px;
+  margin: 8px 0;
+}
+
+#edit-profile-button {
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 3px;
+  margin-top: 10px;
+  font: 14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+
+#bio-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+}
+
+#biography,
+#bio-description {
+  color: white;
+  font-weight: 500;
+  font-size: 24px;
+}
