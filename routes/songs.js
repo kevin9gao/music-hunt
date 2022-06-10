@@ -128,6 +128,13 @@ router.get('/:name/:id', csrfProtection, asyncHandler(async (req, res) => {
         include: [db.User]
     })
 
+    const comments = await db.Comment.findAll({
+        where: {
+            songId: songId
+        },
+        include: [db.User]
+    })
+
     if (!song) {
         res.redirect(`/${req.params.name}/${songId}`)
     }
@@ -144,13 +151,14 @@ router.get('/:name/:id', csrfProtection, asyncHandler(async (req, res) => {
     res.render('song-page', {
         song,
         relatedSongs,
+        comments,
         csrfToken: req.csrfToken(),
     })
 }));
 
 
 router.post('/comments/new', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
-    const { body, songId, songName } = req.body;
+    const { body, songId, songName, username } = req.body;
 
     const comment = await db.Comment.build({
         userId: res.locals.user.id,
@@ -158,8 +166,7 @@ router.post('/comments/new', requireAuth, csrfProtection, asyncHandler(async (re
         body,
     });
 
-    await comment.save();
-    res.redirect(`/songs/${songName}/${songId}`);
+    return await comment.save();
 }));
 
 
