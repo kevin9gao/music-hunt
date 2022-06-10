@@ -1,14 +1,30 @@
 extends layout.pug
 
+append head
+    title= `Music Hunt - ${user.full_name}`
+    link(rel='stylesheet' href='/stylesheets/edit-profile-page.css')
+    script(src="/javascripts/index.js" type="module" defer)
+
 block content
-  form(action=`/users/${user.username}` method='post')
-    input(type='hidden' name='_csrf' value=csrfToken)
-    label Profile Picture
-    //- value=user.profilePic.src)
-    input(type="img" name='profilePic' value='')
-    label Full Name
-    input(type="text" name='full_name' value=user.full_name)
-    label Biography
-    //- value=user.biography
-    input(type="text" name='biography' value='')
-    button Submit Changes
+        form(action=`/users/${user.username}` method='post')
+          input(type='hidden' name='_csrf' value=csrfToken)
+          div.body-container
+            div.body-container-elements
+              div.profile-edit-title Editing Profile👇
+
+              div.picture-box
+                label Profile Picture
+                value=user.profilePic.src
+                input(type="img" name='profilePic' value='https://static01.nyt.com/images/2014/07/23/upshot/23UP-cat/23UP-cat-superJumbo.jpg')
+              div.full-name-box
+                label Full Name
+
+                input(type="text" name='full_name' value=user.full_name)
+              div.biography-box
+                label Biography
+
+                //- value=user.biography
+                textarea(name="biography" cols="30", rows="10" value=user.biography)
+              div.button-box
+                a(href=`/users/${user.username}` class='edit-profile-buttons') Cancel
+                button(class='edit-profile-buttons') Submit Changes
