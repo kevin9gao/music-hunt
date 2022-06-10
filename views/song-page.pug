@@ -9,7 +9,7 @@ block content
         span.text-style-1 →
         a.text-style-1(href="/songs") Songs
         span.text-style-1 →
-        a.text-style-1(href=`/songs/${song.id}/${song.name}`)= song.name
+        a.text-style-1(href=`/songs/${song.name}/${song.id}`)= song.name
       div#song-container
         div
           img(src=song.albumArt)
@@ -39,14 +39,14 @@ block content
     div More from this artist . . .
   div#related-container.text-style-1
       each song in relatedSongs
-        a(href=`/songs/${song.id}/${song.name}`).related-song
+        a(href=`/songs/${song.name}/${song.id}`).related-song
           img(src=song.albumArt).img-size-2
           div.centered= song.name
   div#comment-container test
       div#comment-container
-        form(action='/comments/new' method='post')
+        form(action='/songs/comments/new' method='post')
           input(type='hidden' name='_csrf' value=csrfToken)
-          textarea(name='body')
+          textarea(name='body' required)
           input(type='hidden' name='songId' value=song.id)
           input(type='hidden' name='songName' value=song.name)
           button Comment

@@ -23,7 +23,7 @@ block content
                     td
                         img(src=song.albumArt class="songPic" height="150px" width="150px")
                     td
-                        a(href=`/songs/${song.id}/${song.name}`)= song.name
+                        a(href=`/songs/${song.name}/${song.id}`)= song.name
                     td
                         a(href=`/songs/${song.User.username}`)= song.User.username
                     td

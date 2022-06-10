@@ -1,6 +1,7 @@
 const express = require('express');
 const { asyncHandler, csrfProtection } = require('./utils');
 const { check, validationResult } = require('express-validator');
+const { requireAuth } = require('./auth.js')
 const { Op } = require('sequelize');
 const router = express.Router();
 const db = require('../db/models');
@@ -116,18 +117,19 @@ router.post('/new', csrfProtection, songsValidators, asyncHandler(async (req, re
     } else req.session.save(() => res.redirect('/users/login'))
 }));
 
-router.get('/:id/:name', csrfProtection, asyncHandler(async (req, res) => {
+router.get('/:name/:id', csrfProtection, asyncHandler(async (req, res) => {
     const songId = req.params.id;
 
     const song = await db.Song.findOne({
         where: {
             id: songId,
+            name: req.params.name
         },
         include: [db.User]
     })
 
-    if (song.name !== req.params.name) {
-        res.redirect(`/${songId}/${req.params.name}`);
+    if (!song) {
+        res.redirect(`/${req.params.name}/${songId}`)
     }
 
     const relatedSongs = await db.Song.findAll({
@@ -145,5 +147,20 @@ router.get('/:id/:name', csrfProtection, asyncHandler(async (req, res) => {
         csrfToken: req.csrfToken(),
     })
 }));
+
+
+router.post('/comments/new', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
+    const { body, songId, songName } = req.body;
+
+    const comment = await db.Comment.build({
+        userId: res.locals.user.id,
+        songId,
+        body,
+    });
+
+    await comment.save();
+    res.redirect(`/songs/${songName}/${songId}`);
+}));
+
 
 module.exports = router;
