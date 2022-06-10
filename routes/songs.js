@@ -1,6 +1,7 @@
 const express = require('express');
 const { asyncHandler, csrfProtection } = require('./utils');
 const { check, validationResult } = require('express-validator');
+const { Op } = require('sequelize');
 const router = express.Router();
 const db = require('../db/models');
 
@@ -116,6 +117,7 @@ router.post('/new', csrfProtection, songsValidators, asyncHandler(async (req, re
 
 router.get('/:id/:name', asyncHandler(async (req, res) => {
     const songId = req.params.id;
+
     const song = await db.Song.findOne({
         where: {
             id: songId,
@@ -123,8 +125,22 @@ router.get('/:id/:name', asyncHandler(async (req, res) => {
         include: [db.User]
     })
 
+    if (song.name !== req.params.name) {
+        res.redirect(`/${songId}/${req.params.name}`);
+    }
+
+    const relatedSongs = await db.Song.findAll({
+        where: {
+            artistId: song.artistId,
+            name: {
+                [Op.ne]: song.name
+            }
+        }, limit: 5
+    })
+
     res.render('song-page', {
         song,
+        relatedSongs,
     })
 }));
 

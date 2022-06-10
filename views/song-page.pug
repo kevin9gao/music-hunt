@@ -6,9 +6,9 @@ block content
   div#main-header
       div#routes
         a.text-style-1(href="/")= 'Home'
-        span.text-style-1=' → '
+        span.text-style-1='→'
         a.text-style-1(href="/songs")= 'Songs'
-        span.text-style-1=' → '
+        span.text-style-1='→'
         a.text-style-1(href=`/songs/${song.id}/${song.name}`)= `${song.name}`
       div#song-container
         div
@@ -17,14 +17,32 @@ block content
           div
             h1#song-name= `${song.name}`
             h2#artist-name= `${song.User.username}`
-          div
-            button#visit
-            button#upvote
-              div
-              div
-
+          div#visit-upvote-container
+            button#visit-button
+              //- TODO Change to href='profile page'
+              a(href='/')#visit= 'Visit'
+            button#upvote-button
+              div#upvote-container
+                div#upvote-img
+                div#upvote-text= 'UPVOTE ###'
       div#description
-  div#related-songs= 'test'
+        p= song.description
+        div
+          - let link = song.urlLink.replace(".com/", ".com/embed/") //changes the spotify link to a url that can be embedded
+          iframe(
+            style = "border-radius:12px" src = `${link.slice(0, -20)}?utm_source=generator`
+            width = "100%" height = "380" frameBorder = "0" allowfullscreen = ""
+            allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture")
+  div#related-title
+    //- TODO Include img link to be song.User.profilePic
+    img(src=song.albumArt).img-size-1
+    div= 'More from this artist . . .'
+  div#related-container.text-style-1
+      each song in relatedSongs
+        a(href=`/songs/${song.id}/${song.name}`).related-song
+          img(src=song.albumArt).img-size-2
+          div.centered= song.name
   div#comment-container= 'test'
-      div#comment-box
+      div#comment-container
+        form(action='/comments/new' method='post')
       div#comments
