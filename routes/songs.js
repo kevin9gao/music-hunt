@@ -1,20 +1,21 @@
 const express = require('express');
 const { asyncHandler, csrfProtection } = require('./utils');
 const { check, validationResult } = require('express-validator');
+const { requireAuth } = require('./auth.js')
+const { Op } = require('sequelize');
 const router = express.Router();
 const db = require('../db/models');
 
 
 router.get('/', asyncHandler(async (req, res) => {
-    const users = await db.User.findAll();
     const songUpvotes = await db.SongUpvote.findAll();
     const songs = await db.Song.findAll(
         {
-            // includes: [songUpvotes]
+            include: [db.User]
         }
     );
     let count = 0;
-    res.render('songs', { songs, users, songUpvotes, count });
+    res.render('songs', { songs, songUpvotes, count });
 }));
 
 router.post('/upvote/:id', async (req, res) => {
@@ -83,6 +84,7 @@ const songsValidators = [
 
 router.post('/new', csrfProtection, songsValidators, asyncHandler(async (req, res) => {
     let { name, urlLink, albumArt, description } = req.body
+
     if (req.session.auth) {
         const { userId } = req.session.auth
 
@@ -113,6 +115,52 @@ router.post('/new', csrfProtection, songsValidators, asyncHandler(async (req, re
         }
 
     } else req.session.save(() => res.redirect('/users/login'))
-}))
+}));
+
+router.get('/:name/:id', csrfProtection, asyncHandler(async (req, res) => {
+    const songId = req.params.id;
+
+    const song = await db.Song.findOne({
+        where: {
+            id: songId,
+            name: req.params.name
+        },
+        include: [db.User]
+    })
+
+    if (!song) {
+        res.redirect(`/${req.params.name}/${songId}`)
+    }
+
+    const relatedSongs = await db.Song.findAll({
+        where: {
+            artistId: song.artistId,
+            name: {
+                [Op.ne]: song.name
+            }
+        }, limit: 5
+    })
+
+    res.render('song-page', {
+        song,
+        relatedSongs,
+        csrfToken: req.csrfToken(),
+    })
+}));
+
+
+router.post('/comments/new', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
+    const { body, songId, songName } = req.body;
+
+    const comment = await db.Comment.build({
+        userId: res.locals.user.id,
+        songId,
+        body,
+    });
+
+    await comment.save();
+    res.redirect(`/songs/${songName}/${songId}`);
+}));
+
 
 module.exports = router;

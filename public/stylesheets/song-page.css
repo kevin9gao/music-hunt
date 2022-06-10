@@ -1,0 +1,182 @@
+body {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 72px;
+    height: 72px;
+    border-radius: 10%;
+}
+
+.text-style-1 {
+    color: #4b587c;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,
+        sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+
+#main-header {
+    max-width: 800px;
+}
+
+#routes {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0 20px 0;
+    left: 0;
+    width: 800px;
+
+}
+
+#song-container {
+    box-sizing: border-box;
+}
+
+
+#song-info {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    margin-top: 12px;
+    justify-content: space-between;
+    width: 800px;
+}
+
+#song-name {
+    color: #21293c;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    width: 400px;
+    overflow: auto;
+}
+
+#artist-name {
+    color: #4b587c;
+    width: 400px;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 32px;
+    margin-top: 8px;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,
+        sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+
+#visit-button {
+    background: #fff;
+    border: 1px solid #d9e1ec;
+    border-radius: 4px;
+    width: 80px;
+    height: 64px;
+    padding: 8px 16px;
+}
+
+#visit-upvote-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#visit {
+    color: #21293c;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 600;
+    text-align: center;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,
+        sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+
+#upvote-button {
+    width: 224px;
+    height: 64px;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+    background-color: #004BFF;
+    margin-left: 12px;
+}
+
+#upvote-container {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+
+#upvote-img{
+    background-image: url(https://ph-static.imgix.net/Upvote-burst-white-v6.png?auto=compress&format=auto);
+    margin: -20px;
+    width: 45px;
+    height: 26px;
+    background-position: 0;
+    background-repeat: no-repeat;
+    background-size: 2900%;
+}
+
+#upvote-text {
+    color: #fff;
+    font-size:14px;
+    line-height: 24px;
+    font-weight: 600;
+    margin-left: 20px;
+    text-align: center;
+}
+
+#related-title {
+    display: flex;
+    flex-direction: row;
+    width: 1216px;
+    padding-left: 100px;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+#related-container {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    width: 1000px;
+    height: 280px;
+    margin: 20px 142px 10px 142px;
+    border-bottom: 1px solid #d9e1ec;
+    overflow: auto;
+}
+
+.related-song {
+    width: 300px;
+    height: 220px;
+    margin-right: 10px;
+}
+
+.img-size-1 {
+    width: 50px;
+    height: 50px;
+    margin-left: 50px;
+    margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 100%;
+}
+
+.img-size-2 {
+    width: 290px;
+    height: 220px;
+    border-radius: 5%;
+}
+
+.centered {
+    text-align: center;
+}
