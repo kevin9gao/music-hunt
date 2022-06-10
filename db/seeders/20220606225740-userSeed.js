@@ -90,21 +90,41 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        email: 'Tpain@gmail.com',
-        username: 'T-pain',
-        full_name: 'Faheem Rashad Najm',
-        biography: 'Faheem Rasheed Najm, better known by his stage name T-Pain, is an American rapper, singer, songwriter and record producer. Throughout his career as a singer, T-Pain popularized the creative use of the Auto-Tune pitch correction effect, used with extreme parameter settings to create distinctive vocal sounds.',
-        profilePic: 'https://www2.pictures.zimbio.com/gi/T+Pain+8-J65g_Z5Fsm.jpg',
-        hashedPassword: 'example-pasword',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
         email: 'Queen@gmail.com',
         username: 'Queen',
         full_name: 'Freddie Mercury',
         biography: 'Freddie Mercury was a British singer and songwriter, who achieved worldwide fame as the lead vocalist of the rock band Queen. Regarded as one of the greatest singers in the history of rock music, he was known for his flamboyant stage persona and four-octave vocal range.',
         profilePic: 'https://lyricstranslate.com/files/styles/artist/public/freddie-mercury_sacha-baron-cohen.jpg',
+        hashedPassword: 'example-pasword',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: 'Shane.Wilkey@yahoo.com',
+        username: 'Shane',
+        full_name: 'Shane Wilkey',
+        biography: 'I am the App Academy March 2022 Cohort Lead and a member of Green Jelly!',
+        profilePic: 'https://assets-global.website-files.com/5dcc7f8c449e597ed83356b8/603820afd31232aab368ea6f_New%20Red-logo-emblem.png',
+        hashedPassword: 'example-pasword',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: 'Alec.Keeler@yahoo.com',
+        username: 'Alek',
+        full_name: 'Alec Keeler',
+        biography: 'I am an online module instructor at App Academy',
+        profilePic: 'https://assets-global.website-files.com/5dcc7f8c449e597ed83356b8/603820afd31232aab368ea6f_New%20Red-logo-emblem.png',
+        hashedPassword: 'example-pasword',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: 'Dan.Chin@yahoo.com',
+        username: 'bongochin',
+        full_name: 'Dan Chin',
+        biography: 'I am an instructional assistant at App Academy',
+        profilePic: 'https://assets-global.website-files.com/5dcc7f8c449e597ed83356b8/603820afd31232aab368ea6f_New%20Red-logo-emblem.png',
         hashedPassword: 'example-pasword',
         createdAt: new Date(),
         updatedAt: new Date()

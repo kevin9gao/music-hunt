@@ -46,15 +46,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        name: "Kalimba",
-        artistId: 2,
-        urlLink: "https://open.spotify.com/track/4RZ7Lwj1bivN1payIeOKXp?si=2f20cb877c234920",
-        albumArt: "https://f4.bcbits.com/img/a1000081424_16.jpg",
-        description: "Mr. Scruff Ninja Tuna! KALIMBA",
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
         name: "Banksy",
         artistId: 7,
         urlLink: "https://open.spotify.com/track/7qhIVhh8NG2VQ0SnIT8clV?si=a496e16e1f5b4f9a",
