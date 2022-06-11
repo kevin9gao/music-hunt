@@ -55,12 +55,21 @@ block content
         a(href=`/songs/${song.name}/${song.id}`).related-song
           img(src=song.albumArt).img-size-2
           div.centered= song.name
-  div#comment-container
-      div#comment-container
-        form(action='/songs/comments/new' method='post')
-          input(type='hidden' name='_csrf' value=csrfToken)
-          textarea(name='body' required)
-          input(type='hidden' name='songId' value=song.id)
-          input(type='hidden' name='songName' value=song.name)
-          button Comment
-      div#comments
+  div#comment-section-container
+    div#comment-container
+      if locals.authenticated
+        div#comment-submit-form
+          form.comment-form
+            input(type='hidden' name='_csrf' value=csrfToken)
+            input(type='hidden' name='user' value=locals.user)#current-user
+            textarea(name='body' required)#comment-message
+            input(type='hidden' name='songId' value=song.id)#song-id
+            input(type='hidden' name='songName' value=song.name)
+            button#submit-comment-button Comment
+      div#comment-box
+        each comment in comments
+          div.comment-wrapper
+            a(href=`/users/${comment.User.username}`)
+              img(src=comment.User.profilePic).comment-profile-pics
+            div.comment-bodies
+              p.comment-body-text= `${comment.User.full_name}: ${comment.body}`
