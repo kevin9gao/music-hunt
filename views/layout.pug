@@ -10,7 +10,6 @@ html
         a(href='/')
           img(id='logo-img' src='https://icon-library.com/images/m-icon/m-icon-7.jpg')
       div.nav-center
-        div#search-template Search
         a(href='/songs')#songs-page-link
           div.users-links.web-links Songs
         a(href='/users')#users-page-link
@@ -32,7 +31,6 @@ html
             button(type='submit' class='users-links') Log Out
       else
         div#logged-out
-          p Logged Out
           form(action='/users/demoUser' method='post' class='log-in_sign-up')
             button.users-links Demo Login
           form(action='/users/login' method='get' class='log-in_sign-up')

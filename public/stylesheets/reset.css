@@ -131,18 +131,9 @@ a:visited {
   /* margin-bottom: auto; */
   /* border: black 1px solid; */
   margin-right: auto;
-  width: 350px;
+  width: 300px;
   height: 80px;
   display: flex;
   justify-content: space-around;
-  align-items: center;
-}
-
-#search-template {
-  border: 1px black solid;
-  width: 40%;
-  height: 25%;
-  display: flex;
-  justify-content: flex-start;
   align-items: center;
 }
