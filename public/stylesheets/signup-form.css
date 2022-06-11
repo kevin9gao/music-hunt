@@ -5,15 +5,15 @@
 html,
 body {
   height: 100%;
+  max-width: 100%;
   margin: 0;
   display: block;
-  overflow: overlay;
-  font: 16px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  font: 1rem -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
 }
 
-div {
+/* div {
   display: block;
-}
+} */
 
 .main-container {
   width: 100%;
@@ -27,15 +27,17 @@ div {
 .left-block {
   width: 40%;
   height: 100%;
+  overflow-y: scroll;
   background-color: #e8e8e8;
   padding: 25px 0;
-  z-index: 1;
+  z-index: 2;
   display: block;
 }
 
 .left-block-container {
-  width: calc(100% + 50px);
-  height: 100%;
+  width: calc(100% + 20%) ;
+  min-width: 360px;
+  height: 700px;
   background-color: white;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -43,15 +45,23 @@ div {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  /* align-items: flex-start; */
+  /* overflow: scroll; */
+  /* margin: 30px 0 100px 0px; */
+  /* margin-bottom: 100px; */
+  box-shadow: 0px 0px 4px 2.5px rgba(103, 100, 100, 0.7);
 }
 
 .form-container {
   width: 75%;
-  height: 100%;
+  height: 700px auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  z-index: 10;
+  /* overflow-y: scroll; */
+  /* background-color: red; */
+  /* border-color: red 1px solid; */
 }
 
 .logo-wrapper img {
@@ -66,20 +76,21 @@ div {
   bottom: .7em;
   color: #004bff;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.5rem;
 }
 
 #hey-there {
-  line-height: 50px;
-  margin: 0 0 10px;
-  font-size: 40px;
+  line-height: 50px auto;
+  margin-bottom: 0.4em;
+  font-size: 1.5em;
   font-weight: 700;
 }
 
 #hey-subtext {
-  line-height: 32px;
-  margin: 0 0 20px;
-  font-size: 20px;
+  line-height: 1em;
+  width: 90%;
+  margin-bottom: 20px;
+  font-size: 1.2em;
   font-weight: 300;
 }
 
@@ -94,7 +105,8 @@ div {
 }
 
 .input-wrappers {
-  width: 80%;
+  width: 90%;
+  height: 50%;
   display: block;
   margin-bottom: 1em;
 }
@@ -102,7 +114,7 @@ div {
 .inputs {
   border-radius: 3px;
   border: 1px solid #6f7781;
-  height: 3em;
+  height: 2em;
   width: 100%;
   outline: none;
   margin-top: 10px;
@@ -119,8 +131,7 @@ div {
   flex-direction: row;
   justify-content: center;
   width: 80%;
-  margin-top: 20px;
-  padding-top: 20px;
+  margin-top: 1rem;
 }
 
 .button-wrappers button {
@@ -146,4 +157,12 @@ button:hover {
   padding-left: 50px;
   background-image: url('https://axerosolutions.com/assets/Uploaded-CMS-Files/1c3bc747-fef3-4ce9-a3ae-dc94f44fbcb1.jpg');
   background-size: cover;
+  z-index: -999999;
+}
+
+.button-wrappers {
+  display: flex;
+  margin: 0.6rem;
+  flex-direction: column;
+  align-items: center;
 }
