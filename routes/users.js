@@ -84,6 +84,7 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, 
   const user = await db.User.build({
     email,
     username,
+    profilePic: 'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png',
     full_name
   })
 
@@ -183,7 +184,7 @@ router.post('/demoUser', asyncHandler(async (req, res) => {
   }
 
   loginUser(req, res, demoUser);
-  req.session.save(( ) => res.redirect('/users'));
+  req.session.save(() => res.redirect('/users'));
 }));
 
 router.get('/:id', asyncHandler(async (req, res, next) => {
@@ -214,7 +215,7 @@ router.get('/:id', asyncHandler(async (req, res, next) => {
 
 }))
 
-router.get('/:id/edit', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {
+router.get('/:id/edit', csrfProtection, requireAuth, asyncHandler(async (req, res, next) => {
 
   const user = await db.User.findOne({
     where: { username: req.params.id }
@@ -226,7 +227,7 @@ router.get('/:id/edit', csrfProtection, requireAuth, asyncHandler(async(req, res
   });
 }))
 
-router.post('/:id', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {
+router.post('/:id', csrfProtection, requireAuth, asyncHandler(async (req, res, next) => {
 
   const user = await db.User.findOne({
     where: { username: req.params.id }

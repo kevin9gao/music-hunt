@@ -21,9 +21,11 @@ block content
                     each user in users
                         tr.users-table-body
                             td.profile-pic-wrapper
-                                img(src=user.profilePic || 'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png').profile-pic
+                                a(href=`/users/${user.username}`)
+                                    img(src=user.profilePic).profile-pic
                             div.table-body-wrappers
-                                td(class='column one body')= user.full_name
+                                td
+                                    a(href=`/users/${user.username}` class='column one body' style="text-decoration: none;")= user.full_name
                             div.table-body-wrappers
                                 td(class='column two body')= user.username
                             div.table-body-wrappers.biography-wrappers
