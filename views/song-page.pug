@@ -2,6 +2,7 @@ extends layout
 append head
   link(rel='stylesheet' href='/stylesheets/song-page.css')
   script(src="/javascripts/song-page.js" type="module" defer)
+  script(src="/javascripts/delete-pop-up.js" type="module" defer)
 block content
   div#main-header
       div#routes
@@ -18,9 +19,21 @@ block content
             h1#song-name= song.name
             h2#artist-name= song.User.username
           div#visit-upvote-container
-            button#visit-button
-              //- TODO Change to href='profile page'
-              a(href='/')#visit Visit
+            if locals.authenticated
+              //- form(action=`/songs/${song.id}/delete` method="post")
+              if locals.user.username === song.User.username
+                button#delete-button
+                  div#delete-text-1 Delete
+                  div#delete-text-2 Song?
+                div#delete-pop-up-background
+                  div#delete-pop-up-form
+                    form(action=`/songs/${song.id}/delete` method="post" style="display: inline-block;")
+                      button#confirm-delete.delete-buttons Confirm
+                    button#cancel-delete.delete-buttons Cancel
+                    div#delete-warning Are you sure you want to delete this song?
+                    div#delete-logo-box
+                      img(id='delete-logo' src='https://icon-library.com/images/m-icon/m-icon-7.jpg')
+                //- TODO Change to href='profile page'
             button#upvote-button
               div#upvote-container
                 div#upvote-img

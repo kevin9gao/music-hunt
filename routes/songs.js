@@ -44,12 +44,14 @@ router.post('/upvote/:id', async (req, res) => {
 })
 
 
-router.get('/new', csrfProtection, (req, res) => {
-    const song = db.Song.build()
-    res.render("new-song", {
-        csrfToken: req.csrfToken(),
-        song
-    })
+router.get('/upload', csrfProtection, (req, res) => {
+    if (req.session.auth) {
+        const song = db.Song.build()
+        res.render("new-song", {
+            csrfToken: req.csrfToken(),
+            song
+        })
+    } else req.session.save(() => res.redirect('/users/login'))
 })
 
 const songsValidators = [
@@ -118,7 +120,7 @@ router.post('/new', csrfProtection, songsValidators, asyncHandler(async (req, re
 }));
 
 router.get('/:name/:id', csrfProtection, asyncHandler(async (req, res) => {
-    const songId = req.params.id;
+    const songId = req.params.id
 
     const song = await db.Song.findOne({
         where: {
@@ -162,5 +164,17 @@ router.post('/comments/new', requireAuth, csrfProtection, asyncHandler(async (re
     res.redirect(`/songs/${songName}/${songId}`);
 }));
 
-
+router.post('/:id/delete', async (req, res) => {
+    const song = await db.Song.findByPk(req.params.id)
+    const songUpvotes = await db.SongUpvote.findAll({
+        where: {
+            songId: song.id
+        }
+    })
+    for (let songUpvote of songUpvotes) {
+        await songUpvote.destroy();
+    }
+    await song.destroy();
+    req.session.save(() => res.redirect('/songs'))
+})
 module.exports = router;
