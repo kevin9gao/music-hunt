@@ -183,6 +183,66 @@ img {
 }
 
 
+#comment-section-container {
+    width: 70%;
+    display: flex;
+}
+
+#comment-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#comment-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-top: 3px solid lightgray;
+    border-bottom: 3px solid lightgray;
+    border-collapse: collapse;
+}
+
+#comment-box img {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    padding: 3px;
+    margin-left: 1em;
+}
+
+.comment-bodies {
+    width: 90%;
+    height: 80%;
+    border-radius: 5px;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    border: 3px solid #004bff;
+}
+
+.comment-body-text {
+    overflow: auto;
+    overflow-wrap: break-word;
+    margin: 1em;
+}
+
+.comment-form {
+    display: flex;
+    padding: 1em;
+    align-items: center;
+
+
 #delete-text-2 {
     position: relative;
     left: 3px;
