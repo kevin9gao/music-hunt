@@ -179,6 +179,7 @@ router.post('/demoUser', asyncHandler(async (req, res) => {
       email: 'demouser@demo.com',
       username: 'demo',
       full_name: 'Demo Login',
+      profilePic: 'https://opengameart.org/sites/default/files/robot-preview.png',
       hashedPassword
     })
   }
