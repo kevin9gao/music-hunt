@@ -143,9 +143,19 @@ router.get('/:name/:id', csrfProtection, asyncHandler(async (req, res) => {
         }, limit: 5
     })
 
+    // Find how many upvotes this song has
+    const songUpvotes = await db.SongUpvote.findAll({
+        where: {
+            songId
+        }
+    })
+
+    const upvotes = songUpvotes.length
+
     res.render('song-page', {
         song,
         relatedSongs,
+        upvotes,
         csrfToken: req.csrfToken(),
     })
 }));

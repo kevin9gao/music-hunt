@@ -37,7 +37,7 @@ block content
             button#upvote-button
               div#upvote-container
                 div#upvote-img
-                div#upvote-text UPVOTE ###
+                div#upvote-text= `UPVOTE ${upvotes}`
       div#description
         p= song.description
         div
@@ -55,7 +55,7 @@ block content
         a(href=`/songs/${song.name}/${song.id}`).related-song
           img(src=song.albumArt).img-size-2
           div.centered= song.name
-  div#comment-container test
+  div#comment-container
       div#comment-container
         form(action='/songs/comments/new' method='post')
           input(type='hidden' name='_csrf' value=csrfToken)
