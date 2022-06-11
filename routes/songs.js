@@ -157,16 +157,18 @@ router.get('/:name/:id', csrfProtection, asyncHandler(async (req, res) => {
 }));
 
 
-router.post('/comments/new', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
-    const { body, songId, songName, username } = req.body;
+router.post('/comments/new', asyncHandler(async (req, res) => {
+    const { body, songId, userId, username, profilePic, full_name } = req.body;
 
     const comment = await db.Comment.build({
-        userId: res.locals.user.id,
+        userId,
         songId,
         body,
     });
 
-    return await comment.save();
+    comment.save();
+
+    res.json({ comment, username, profilePic, full_name });
 }));
 
 

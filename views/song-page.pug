@@ -46,11 +46,11 @@ block content
     div#comment-container
       if locals.authenticated
         div#comment-submit-form
-          form(action='/songs/comments/new' method='post')
+          form.comment-form
             input(type='hidden' name='_csrf' value=csrfToken)
-            input(type='hidden' name='username' value=locals.user)
-            textarea(name='body' required)
-            input(type='hidden' name='songId' value=song.id)
+            input(type='hidden' name='user' value=locals.user)#current-user
+            textarea(name='body' required)#comment-message
+            input(type='hidden' name='songId' value=song.id)#song-id
             input(type='hidden' name='songName' value=song.name)
             button#submit-comment-button Comment
       div#comment-box

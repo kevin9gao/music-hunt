@@ -205,26 +205,38 @@ img {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: #004bff;
-    border-radius: 5px;
-    border: 3px solid lightgray;
+    border-top: 3px solid lightgray;
+    border-bottom: 3px solid lightgray;
+    border-collapse: collapse;
 }
 
 #comment-box img {
     width: 3em;
     height: 3em;
     border-radius: 50%;
+    padding: 3px;
+    margin-left: 1em;
 }
 
 .comment-bodies {
-    width: 80%;
+    width: 90%;
     height: 80%;
     border-radius: 5px;
     background-color: lightgray;
     display: flex;
     align-items: center;
+    margin: auto;
+    border: 3px solid #004bff;
 }
 
 .comment-body-text {
-    margin-left: 10px;
+    overflow: auto;
+    overflow-wrap: break-word;
+    margin: 1em;
+}
+
+.comment-form {
+    display: flex;
+    padding: 1em;
+    align-items: center;
 }
