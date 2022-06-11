@@ -10,7 +10,6 @@ block content
                 th Play Song
                 th Description
                 th Upvotes
-
         tbody
             each song in songs
                 - let link = song.urlLink.replace(".com/", ".com/embed/") //changes the spotify link to a url that can be embedded
@@ -25,7 +24,7 @@ block content
                     td
                         a(href=`/songs/${song.name}/${song.id}`)= song.name
                     td
-                        a(href=`/songs/${song.User.username}`)= song.User.username
+                        a(href=`/users/${song.User.username}`)= song.User.username
                     td
                      iframe(style = "border-radius:12px" src = `${link.slice(0, -20)}?utm_source=generator` width = "100%" height = "80" frameBorder = "0" allowfullscreen = "" allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture")
 

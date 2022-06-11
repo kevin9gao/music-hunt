@@ -5,7 +5,7 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
 const db = require('../db/models');
-const { loginUser, logoutUser, requireAuth } = require('./auth');
+const { loginUser, logoutUser, restoreUser, requireAuth } = require('./auth');
 const { locals } = require('../app');
 
 /* GET users listing. */
@@ -84,6 +84,7 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, 
   const user = await db.User.build({
     email,
     username,
+    profilePic: 'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png',
     full_name
   })
 
@@ -183,7 +184,7 @@ router.post('/demoUser', asyncHandler(async (req, res) => {
   }
 
   loginUser(req, res, demoUser);
-  req.session.save(( ) => res.redirect('/users'));
+  req.session.save(() => res.redirect('/users'));
 }));
 
 router.get('/:id', asyncHandler(async (req, res, next) => {
@@ -214,19 +215,26 @@ router.get('/:id', asyncHandler(async (req, res, next) => {
 
 }))
 
-router.get('/:id/edit', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {
 
-  const user = await db.User.findOne({
-    where: { username: req.params.id }
-  })
+router.get('/:id/edit', requireAuth, restoreUser, csrfProtection, asyncHandler(async(req, res, next) => {
 
-  res.render('edit-profile', {
-    user,
-    csrfToken: req.csrfToken()
-  });
+  if (res.locals.user.username !== req.params.id ) {
+    const err = new Error('You don\'t have access.');
+    err.status = 403;
+    throw err;
+  }
+    const user = await db.User.findOne({
+      where: { username: req.params.id }
+    })
+
+    res.render('edit-profile', {
+      user,
+      csrfToken: req.csrfToken()
+    });
+
 }))
 
-router.post('/:id', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {
+router.post('/:id', requireAuth, restoreUser, csrfProtection, asyncHandler(async(req, res, next) => {
 
   const user = await db.User.findOne({
     where: { username: req.params.id }

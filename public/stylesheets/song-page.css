@@ -20,8 +20,8 @@ img {
     font-size: 12px;
     line-height: 20px;
     font-weight: 400;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,
-        sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+        sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
 #main-header {
@@ -67,17 +67,18 @@ img {
     font-size: 24px;
     line-height: 32px;
     margin-top: 8px;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,
-        sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+        sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
-#visit-button {
+#delete-button {
     background: #fff;
     border: 1px solid #d9e1ec;
     border-radius: 4px;
     width: 80px;
     height: 64px;
     padding: 8px 16px;
+    border-color: #004BFF;
 }
 
 #visit-upvote-container {
@@ -93,8 +94,8 @@ img {
     line-height: 24px;
     font-weight: 600;
     text-align: center;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,
-        sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+        sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
 #upvote-button {
@@ -117,7 +118,7 @@ img {
     justify-content: center;
 }
 
-#upvote-img{
+#upvote-img {
     background-image: url(https://ph-static.imgix.net/Upvote-burst-white-v6.png?auto=compress&format=auto);
     margin: -20px;
     width: 45px;
@@ -129,7 +130,7 @@ img {
 
 #upvote-text {
     color: #fff;
-    font-size:14px;
+    font-size: 14px;
     line-height: 24px;
     font-weight: 600;
     margin-left: 20px;
@@ -180,6 +181,7 @@ img {
 .centered {
     text-align: center;
 }
+
 
 #comment-section-container {
     width: 70%;
@@ -239,4 +241,92 @@ img {
     display: flex;
     padding: 1em;
     align-items: center;
+
+
+#delete-text-2 {
+    position: relative;
+    left: 3px;
+}
+
+#delete-text-2,
+#delete-text-1 {
+    font-weight: 400;
+
+}
+
+#delete-button:hover {
+    transition: ease-in;
+    transition-delay: 500;
+    border: 3px solid red;
+    padding: 0;
+}
+
+#delete-pop-up-background {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: rgb(0, 0, 0, 0.4);
+    z-index: 1;
+    overflow: hidden;
+}
+
+#delete-pop-up-form {
+    height: 350px;
+    width: 500px;
+    background-color: white;
+    border-radius: 30px;
+    margin: 15% auto;
+    border: 1px solid #004bff;
+
+}
+
+.delete-buttons {
+    position: relative;
+    font-size: large;
+    height: 70px;
+    width: 160px;
+    border-radius: 15px;
+}
+
+.delete-buttons:hover {
+    font-weight: 600;
+    border-width: 3px;
+}
+
+#cancel-delete {
+    top: 230px;
+    left: 140px;
+    border-color: #004bff;
+    color: #004bff;
+}
+
+#confirm-delete {
+    top: 230px;
+    left: 40px;
+    border-color: rgb(212, 5, 5);
+    color: rgb(212, 5, 5)
+}
+
+#delete-warning {
+    position: relative;
+    height: 40%;
+    width: 95%;
+    text-align: center;
+    font-size: 42px;
+    left: 15px;
+    top: 15px;
+}
+
+#delete-logo-box {
+    position: relative;
+    bottom: 185px;
+    left: 12px;
+}
+
+#delete-logo {
+    height: 56px;
+    width: 56px;
 }

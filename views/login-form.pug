@@ -1,5 +1,10 @@
 extends layout.pug
 
+append head
+    title= `Music Hunt`
+    link(rel='stylesheet' href='/stylesheets/login-form.css')
+    script(src="/javascripts/index.js" type="module" defer)
+
 block content
   if errors
     p The following errors took place:
@@ -14,10 +19,17 @@ block content
     //- label Username
     //- input(type='text' name='username' value=username)
     //- br
-    label Email Or Username
-    input(type='text' name='login' value=login)
-    br
-    label Password
-    //- TODO change 'text' to 'password'
-    input(type='text' name='password' required)
-    button Login
+    div.body-container
+      div.body-container-elements
+        div.login-title Login 👇 Here
+        div.email-box
+          label Email Or Username
+          input(type='text' name='login' value=login)
+        div.password-box
+          label Password
+          //- TODO change 'text' to 'password'
+          input(type='text' name='password' required)
+        div.button
+          button Login
+        p Do not have an account?
+          a(href=`/users/signup` class='sign-up-link') Sign up
