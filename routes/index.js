@@ -45,9 +45,10 @@ router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
       where: {
         id: topSongs[i]
       },
+      include: [db.User]
     });
 
-    trendingSongs.push(findSong);
+    trendingSongs.push(findSong[0]);
   }
 
   res.render('home', {
