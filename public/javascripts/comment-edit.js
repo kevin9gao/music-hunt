@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', (event) => {
     const editButtons = document.querySelectorAll('.edit-button');
+
     const loggedInUser = document.getElementById('current-user').value;
     const loggedInUserJSON = JSON.parse(loggedInUser);
     const full_name = loggedInUserJSON.full_name;
@@ -30,15 +31,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     })
                 });
 
-                const commentData = await res.json();
-                console.log('COMMENTDATA', commentData)
+                const commentDataEdit = await res.json();
+                console.log('COMMENTDATAEDIT', commentDataEdit)
 
-                if (commentData.message === 'Edit') {
-                    const bodyElement = document.getElementById(`${commentData.comment.id}-comment-body-text`);
+                if (commentDataEdit.message === 'Edit') {
+                    const bodyElement = document.getElementById(`${commentDataEdit.comment.id}-comment-body-text`);
+                    const bodyTextArea = document.getElementById(`${commentDataEdit.comment.id}-edit-comment`)
 
-                    bodyElement.innerHTML = `${full_name}: ${commentData.comment.body}`
+                    bodyElement.innerHTML = `${full_name}: ${commentDataEdit.comment.body}`
                     form.classList.add('hidden')
+                    bodyTextArea.value = '';
                 }
+
+                editButtons = document.querySelectorAll('.edit-button');
             })
         })
     }

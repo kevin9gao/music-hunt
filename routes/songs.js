@@ -134,8 +134,12 @@ router.get('/:name/:id', csrfProtection, asyncHandler(async (req, res) => {
         where: {
             songId: songId
         },
+        order: [
+            ['createdAt', 'ASC']
+        ],
         include: [db.User]
     })
+    console.log(comments)
 
     if (!song) {
         res.redirect(`/${req.params.name}/${songId}`)

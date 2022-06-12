@@ -80,14 +80,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     editButton.setAttribute('id', `edit-comment-${commentData.comment.id}`);
                     editButton.innerText = 'Edit';
                     deleteButton.setAttribute('class', 'delete-button');
-                    deleteButton.setAttribute('id', `delete--comment-${commentData.comment.id}`);
+                    deleteButton.setAttribute('id', `delete-comment-${commentData.comment.id}`);
                     deleteButton.innerText = 'Delete';
                     editForm.setAttribute('class', 'hidden');
                     editForm.setAttribute('id', `edit-form-${commentData.comment.id}`);
                     editLabel.innerText = 'Edit Comment:';
                     editText.setAttribute('name', 'body');
                     editText.setAttribute('id', `${commentData.comment.id}-edit-comment`);
-                    editText.setAttribute('value', `${commentData.comment.body}`);
                     editText.setAttribute('value', `${commentData.comment.body}`);
                     editText.required = true;
                     editSubmit.setAttribute('class', 'edit-submit');
@@ -106,6 +105,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     commentTextarea.focus();
                 }
             }
+
+            // const editButtons = document.querySelectorAll('.edit-button');
+            // console.log(editButtons)
         });
     }
 });
