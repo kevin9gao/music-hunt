@@ -25,11 +25,11 @@ block content
                                     img(src=user.profilePic).profile-pic
                             div.table-body-wrappers
                                 td
-                                    a(href=`/users/${user.username}` class='column one body' style="text-decoration: none;")= user.full_name
+                                    a(href=`/users/${user.username}` class='column one body' style="text-decoration: none;").user-names= user.full_name
                             div.table-body-wrappers
                                 td(class='column two body')= user.username
                             div.table-body-wrappers.biography-wrappers
-                                td(class='column three body')= user.biography
+                                td(class='column three body').biographies= user.biography
                             div.table-body-wrappers
                                 if user.Songs.length > 0
                                     td(class='column four body')

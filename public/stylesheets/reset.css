@@ -83,7 +83,8 @@ h1 {
 }
 
 #sign-up,
-#edit-profile {
+#edit-profile,
+.gradient-buttons {
   height: 40px;
   width: 80px;
   max-width: 200px;
@@ -96,7 +97,8 @@ h1 {
 }
 
 #sign-up:hover,
-#edit-profile:hover {
+#edit-profile:hover,
+.gradient-buttons:hover {
   transition: ease-in all .8s;
   background-image: linear-gradient(to left, #743ad5, #d53a9d);
 }
