@@ -98,7 +98,7 @@ img {
         sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
-#upvote-button {
+.upvote-button {
     width: 224px;
     height: 64px;
     box-sizing: border-box;
@@ -110,7 +110,11 @@ img {
     margin-left: 12px;
 }
 
-#upvote-container {
+/* .upvote-button:hover {
+    background-image: linear-gradient(to left, #743ad5, #004BFF);
+} */
+
+.upvote-container {
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
@@ -118,17 +122,32 @@ img {
     justify-content: center;
 }
 
-#upvote-img {
-    background-image: url(https://ph-static.imgix.net/Upvote-burst-white-v6.png?auto=compress&format=auto);
-    margin: -20px;
-    width: 45px;
-    height: 26px;
-    background-position: 0;
-    background-repeat: no-repeat;
-    background-size: 2900%;
+.upvote-img {
+    position: relative;
+    left: 4px;
+    bottom: 1px;
+    width: 0px;
+    height: 0px;
+    border-bottom: 18px solid #fff;
+    border-left: transparent solid 18px;
+    border-right: transparent solid 18px;
+    border-radius: 7px;
 }
 
-#upvote-text {
+#upvote-word {
+    position: relative;
+    left: -2px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 600;
+    margin-left: 20px;
+    text-align: center;
+}
+
+.upvote-text {
+    position: relative;
+    right: 15px;
     color: #fff;
     font-size: 14px;
     line-height: 24px;
