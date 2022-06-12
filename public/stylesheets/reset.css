@@ -137,12 +137,3 @@ a:visited {
   justify-content: space-around;
   align-items: center;
 }
-
-#search-template {
-  border: 1px black solid;
-  width: 40%;
-  height: 25%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}

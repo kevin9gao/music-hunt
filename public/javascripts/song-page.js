@@ -13,9 +13,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const loggedInUser = document.getElementById('current-user').value;
         const loggedInUserJSON = JSON.parse(loggedInUser);
         const userId = loggedInUserJSON.id;
-        const username = loggedInUser.username;
-        const profilePic = loggedInUser.profilePic;
-        const full_name = loggedInUser.full_name;
+        const username = loggedInUserJSON.username;
+        const profilePic = loggedInUserJSON.profilePic;
+        const full_name = loggedInUserJSON.full_name;
         const songId = document.getElementById('song-id').value;;
         const body = document.getElementById('comment-message').value;
         const commentTextarea = document.getElementById('comment-message');
@@ -50,7 +50,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 const newAnchor = document.createElement('a');
                 newAnchor.setAttribute('href', `/users/${commentData.username}`);
                 const newProfPic = document.createElement('img');
-                newProfPic.setAttribute('src', commentData.profilePic);
+                newProfPic.setAttribute('src', profilePic);
                 newProfPic.setAttribute('class', 'comment-profile-pics');
                 newAnchor.appendChild(newProfPic);
                 newCommentWrapper.appendChild(newAnchor);
