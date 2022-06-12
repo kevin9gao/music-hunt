@@ -25,13 +25,21 @@ block content
                                     img(src=user.profilePic).profile-pic
                             div.table-body-wrappers
                                 td
-                                    a(href=`/users/${user.username}` class='column one body' style="text-decoration: none;")= user.full_name
+                                    a(href=`/users/${user.username}` class='column one body' style="text-decoration: none;").user-names= user.full_name
                             div.table-body-wrappers
                                 td(class='column two body')= user.username
                             div.table-body-wrappers.biography-wrappers
-                                td(class='column three body')= user.biography
+                                td(class='column three body').biographies= user.biography
                             div.table-body-wrappers
-                                td(class='column four body') Songs Placeholder
+                                if user.Songs.length > 0
+                                    td(class='column four body')
+                                        div.user-songs-list
+                                            each song in user.Songs
+                                                div.user-songs
+                                                    a(href=`/songs/${song.name}/${song.id}`)= song.name
+
+                                else
+                                    td(class='column four body') No Songs
         aside.sidebar
             div.card-containers
                 article.card

@@ -1,0 +1,71 @@
+.body-container {
+    border: rgb(223, 223, 223) 1px solid;
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    background-color: #527ee4;
+    padding-bottom: 40px;
+}
+
+.body-container-elements {
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    width: 700px;
+    margin: 40px 50px auto;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 4px 2.5px rgba(103, 100, 100, 0.7);
+}
+
+.new-song-title {
+    margin-bottom: 25px;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.song-name-box, input{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    margin: 5px 5px;
+}
+
+.song-link-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.description-box, textarea {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.button {
+    display: flex;
+    flex-direction: row ;
+}
+
+.button > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 80px;
+    margin: 10px;
+    color: white;
+    background-color: #2c61dc;
+    border: none;
+    border-radius: 5px;
+    font: 14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-weight: 500;
+}
+
+.button > a {
+    color: #2c61dc;
+    background-color: white;
+}

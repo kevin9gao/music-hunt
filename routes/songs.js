@@ -30,14 +30,14 @@ router.post('/upvote/:id', async (req, res) => {
             }
         })
         if (!songUpvotes) {
-            db.SongUpvote.create({
+            var upvote = db.SongUpvote.create({
                 userId,
                 songId
             })
         } else {
             await songUpvotes.destroy()
         }
-        res.redirect("/songs")
+        res.json({ upvote })
 
     } else res.redirect("/users/login") // when user is not logged in, this will redirect them to the login page
 
@@ -150,10 +150,14 @@ router.get('/:name/:id', csrfProtection, asyncHandler(async (req, res) => {
         }, limit: 5
     })
 
+
+    const songUpvotes = await db.SongUpvote.findAll();
+
     res.render('song-page', {
         song,
         relatedSongs,
         comments,
+        songUpvotes,
         csrfToken: req.csrfToken(),
     })
 }));

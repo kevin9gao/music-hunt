@@ -1,5 +1,10 @@
 extends layout.pug
 
+append head
+    title= `Music Hunt - ${user.full_name}`
+    link(rel='stylesheet' href='/stylesheets/song-upload.css')
+    script(src="/javascripts/index.js" type="module" defer)
+
 block content
  if errors
     p The following errors took place:
@@ -8,19 +13,22 @@ block content
           li= error
  form(action="/songs/new" method="post")
     input(type='hidden' name="_csrf" value=csrfToken)
-    br
-    label Song Name
-    input(type="text" name="name" value=song.name required)
-    br
-    Label Spotify Song Link
-    input(type="text" name="urlLink" value=song.urlLink required)
-    br
-    Label Album Art Image Link
-    input(type="text" name="albumArt" value=song.albumArt)
-    br
-    Label Description
-    br
-    textarea(name="description", value=song.description cols="30", rows="5")
-    br
-    br
-    button Upload Song
+    div.body-container
+      div.body-container-elements
+        div.new-song-title Adding New Song👇
+
+        div.song-name-box
+          label Song Name
+          input(type="text" name="name" value=song.name required)
+        div.song-link-box
+          Label Spotify Song Link
+          input(type="text" name="urlLink" value=song.urlLink required)
+        div.song-picture-box
+          Label Album Art Image Link
+          input(type="text" name="albumArt" value=song.albumArt)
+        div.description-box
+          Label Description
+          textarea(name="description", value=song.description cols="30", rows="5")
+        div.button
+          a(href=`/users/${user.username}` class='edit-profile-buttons') Cancel
+          button Upload Song

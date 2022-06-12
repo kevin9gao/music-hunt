@@ -14,15 +14,15 @@ html
           div.users-links.web-links Songs
         a(href='/users')#users-page-link
           div.users-links.web-links Users
-        a(href="/")#about-page-link
+        a(href="/about")#about-page-link
           div.users-links.web-links About
       div.nav-right
 
       if locals.authenticated
         div#logged-in
           if user
-          a(href=`/songs/upload` id='song-upload')
-            p#welcome-user Upload A Song
+            a(href=`/songs/upload` id='navbar-profile')
+              p#welcome-user Upload A Song
             a(href=`/users/${user.username}` id='navbar-profile')
               p#welcome-user= `Welcome, ${user.full_name}`
           form(action=`/users/${user.username}/edit` method='get')
@@ -36,5 +36,5 @@ html
           form(action='/users/login' method='get' class='log-in_sign-up')
             button.users-links Log In
           form(action='/users/signup' method='get' class='log-in_sign-up')
-            button#sign-up Sign Up
+            button#sign-up.gradient-buttons Sign Up
     block content
