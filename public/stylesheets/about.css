@@ -65,6 +65,7 @@
 
 .profile-picture img {
     max-width: 75%;
+    width: 25vh;
     height: auto;
     display: flex;
     align-items: center;
