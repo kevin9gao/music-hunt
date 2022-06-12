@@ -10,20 +10,19 @@ html
         a(href='/')
           img(id='logo-img' src='https://icon-library.com/images/m-icon/m-icon-7.jpg')
       div.nav-center
-        div#search-template Search
         a(href='/songs')#songs-page-link
           div.users-links.web-links Songs
         a(href='/users')#users-page-link
           div.users-links.web-links Users
-        a(href="/")#about-page-link
+        a(href="/about")#about-page-link
           div.users-links.web-links About
       div.nav-right
 
       if locals.authenticated
         div#logged-in
           if user
-          a(href=`/songs/upload` id='song-upload')
-            p#welcome-user Upload A Song
+            a(href=`/songs/upload` id='navbar-profile')
+              p#welcome-user Upload A Song
             a(href=`/users/${user.username}` id='navbar-profile')
               p#welcome-user= `Welcome, ${user.full_name}`
           form(action=`/users/${user.username}/edit` method='get')
