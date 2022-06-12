@@ -73,7 +73,7 @@ block content
               img(src=comment.User.profilePic).comment-profile-pics
             div.comment-bodies
               p.comment-body-text= `${comment.User.full_name}: ${comment.body}`
-          if locals.user.id === comment.User.id
+          if (locals.user && locals.user.id === comment.User.id)
             div.edit-and-delete
               button(class='edit-button' id=`edit-comment-${comment.id}`) Edit
               button(class='delete-button' id=`delete-comment-${comment.id}`) Delete
