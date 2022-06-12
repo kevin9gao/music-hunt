@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const username = loggedInUserJSON.username;
         const profilePic = loggedInUserJSON.profilePic;
         const full_name = loggedInUserJSON.full_name;
-        const songId = document.getElementById('song-id').value;;
+        const songId = document.getElementById('song-id').value;
         const body = document.getElementById('comment-message').value;
         const commentTextarea = document.getElementById('comment-message');
 
