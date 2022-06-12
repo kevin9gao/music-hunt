@@ -4,7 +4,7 @@ append head
     link(rel='stylesheet' href='/stylesheets/songs.css')
 
 block content
-    input(id="data" type="hidden" data-upvotes= songUpvotes data-songs= songs name="db")
+    input(type='hidden' name='user' value=locals.user)#current-user
     table
         thead
             tr
