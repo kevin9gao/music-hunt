@@ -60,7 +60,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     const newCommentBodyDiv = document.createElement('div');
                     newCommentBodyDiv.setAttribute('class', 'comment-bodies');
                     const newCommentBodyText = document.createElement('p');
-                    newCommentBodyText.setAttribute('class', 'comment-body-text');
+                    newCommentBodyText.setAttribute('class', `comment-body-text`);
+                    newCommentBodyText.setAttribute('id', `${commentData.comment.id}-comment-body-text`);
                     newCommentBodyText.innerHTML = `${commentData.full_name}: ${commentData.comment.body}`;
                     newCommentBodyDiv.appendChild(newCommentBodyText);
                     newCommentWrapper.appendChild(newCommentBodyDiv);

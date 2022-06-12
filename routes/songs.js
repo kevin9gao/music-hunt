@@ -2,10 +2,9 @@ const express = require('express');
 const { asyncHandler, csrfProtection } = require('./utils');
 const { check, validationResult } = require('express-validator');
 const { requireAuth } = require('./auth.js')
-const { Op, Sequelize } = require('sequelize');
+const { Op } = require('sequelize');
 const router = express.Router();
 const db = require('../db/models');
-const { sequelize } = require('../db/models');
 
 
 router.get('/', asyncHandler(async (req, res) => {
@@ -174,13 +173,14 @@ router.post('/comments/new', asyncHandler(async (req, res) => {
     res.json({ comment, username, profilePic, full_name });
 }));
 
-router.put(`/comments/:id`, csrfProtection, asyncHandler(async (req, res) => {
+router.put(`/comments/:id`, asyncHandler(async (req, res) => {
     console.log(req.body)
-    const comment = await db.Comments.findByPk(req.params.id)
+    const comment = await db.Comment.findByPk(req.params.id);
+
     comment.body = req.body.body
     await comment.save()
 
-    res.json({ message: 'Edit', post })
+    res.json({ message: 'Edit', comment })
 }))
 
 router.post('/:id/delete', async (req, res) => {

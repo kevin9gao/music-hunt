@@ -2,6 +2,7 @@ extends layout
 append head
   link(rel='stylesheet' href='/stylesheets/song-page.css')
   script(src="/javascripts/song-page.js" type="module" defer)
+  script(src="/javascripts/comment-edit.js" type="module" defer)
   script(src="/javascripts/delete-pop-up.js" type="module" defer)
 block content
   div#main-header
@@ -72,7 +73,7 @@ block content
             a(href=`/users/${comment.User.username}`)
               img(src=comment.User.profilePic).comment-profile-pics
             div.comment-bodies
-              p.comment-body-text= `${comment.User.full_name}: ${comment.body}`
+              p(class='comment-body-text' id=`${comment.id}-comment-body-text`)= `${comment.User.full_name}: ${comment.body}`
           if (locals.user && locals.user.id === comment.User.id)
             div.edit-and-delete
               button(class='edit-button' id=`edit-comment-${comment.id}`) Edit
