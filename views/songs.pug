@@ -1,6 +1,9 @@
 extends layout.pug
+append head
+    script(src="/javascripts/upvotes.js" type="module" defer)
 
 block content
+    input(type="hidden" data-upvotes= songUpvotes data-songs= songsname="db")
     table
         thead
             tr
@@ -31,7 +34,7 @@ block content
                     td= song.description
                     td= count
                     td
-                        form(action=`/songs/upvote/${song.id}` method="post")
-                            button Upvote
+                        //- form(class="upvote_buttons")
+                        button(class="upvote_buttons") Upvote
 
     //- div(idstyle="height: 100px; width: 100px; background-color: orange")

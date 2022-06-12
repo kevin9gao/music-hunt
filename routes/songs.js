@@ -15,7 +15,7 @@ router.get('/', asyncHandler(async (req, res) => {
         }
     );
     let count = 0;
-    res.render('songs', { songs, songUpvotes, count });
+    res.render('songs', { songs, songUpvotes, count, db });
 }));
 
 router.post('/upvote/:id', async (req, res) => {
@@ -30,14 +30,14 @@ router.post('/upvote/:id', async (req, res) => {
             }
         })
         if (!songUpvotes) {
-            db.SongUpvote.create({
+            var upvote = db.SongUpvote.create({
                 userId,
                 songId
             })
         } else {
             await songUpvotes.destroy()
         }
-        res.redirect("/songs")
+        res.json({ upvote })
 
     } else res.redirect("/users/login") // when user is not logged in, this will redirect them to the login page
 

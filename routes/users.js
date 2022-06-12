@@ -216,25 +216,25 @@ router.get('/:id', asyncHandler(async (req, res, next) => {
 }))
 
 
-router.get('/:id/edit', requireAuth, restoreUser, csrfProtection, asyncHandler(async(req, res, next) => {
+router.get('/:id/edit', requireAuth, restoreUser, csrfProtection, asyncHandler(async (req, res, next) => {
 
-  if (res.locals.user.username !== req.params.id ) {
+  if (res.locals.user.username !== req.params.id) {
     const err = new Error('You don\'t have access.');
     err.status = 403;
     throw err;
   }
-    const user = await db.User.findOne({
-      where: { username: req.params.id }
-    })
+  const user = await db.User.findOne({
+    where: { username: req.params.id }
+  })
 
-    res.render('edit-profile', {
-      user,
-      csrfToken: req.csrfToken()
-    });
+  res.render('edit-profile', {
+    user,
+    csrfToken: req.csrfToken()
+  });
 
 }))
 
-router.post('/:id', requireAuth, restoreUser, csrfProtection, asyncHandler(async(req, res, next) => {
+router.post('/:id', requireAuth, restoreUser, csrfProtection, asyncHandler(async (req, res, next) => {
 
   const user = await db.User.findOne({
     where: { username: req.params.id }
