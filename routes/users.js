@@ -10,7 +10,11 @@ const { locals } = require('../app');
 
 /* GET users listing. */
 router.get('/', asyncHandler(async (req, res, next) => {
-  const users = await db.User.findAll();
+  const users = await db.User.findAll({
+    include: [db.Song]
+  });
+
+  // console.log(users);
 
   res.render('users', {
     users

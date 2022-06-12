@@ -121,3 +121,9 @@ tr:nth-child(even) td {
   text-align: center;
   color: darkblue;
 }
+
+.user-songs-table {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
