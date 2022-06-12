@@ -13,10 +13,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const loggedInUser = document.getElementById('current-user').value;
         const loggedInUserJSON = JSON.parse(loggedInUser);
         const userId = loggedInUserJSON.id;
-        const username = loggedInUser.username;
-        const profilePic = loggedInUser.profilePic;
-        const full_name = loggedInUser.full_name;
-        const songId = document.getElementById('song-id').value;;
+        const username = loggedInUserJSON.username;
+        const profilePic = loggedInUserJSON.profilePic;
+        const full_name = loggedInUserJSON.full_name;
+        const songId = document.getElementById('song-id').value;
         const body = document.getElementById('comment-message').value;
         const commentTextarea = document.getElementById('comment-message');
 
@@ -63,6 +63,42 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 newCommentBodyText.innerHTML = `${commentData.full_name}: ${commentData.comment.body}`;
                 newCommentBodyDiv.appendChild(newCommentBodyText);
                 newCommentWrapper.appendChild(newCommentBodyDiv);
+
+                // create edit and delete buttons and form
+                const editDeleteDiv = document.createElement('div');
+                const editButton = document.createElement('button');
+                const deleteButton = document.createElement('button');
+                const editForm = document.createElement('form');
+                const editLabel = document.createElement('label');
+                const editText = document.createElement('textarea');
+                const editSubmit = document.createElement('button');
+
+                editDeleteDiv.setAttribute('class', 'edit-and-delete');
+                editButton.setAttribute('class', 'edit-button');
+                editButton.setAttribute('id', `edit-comment-${commentData.comment.id}`);
+                editButton.innerText = 'Edit';
+                deleteButton.setAttribute('class', 'delete-button');
+                deleteButton.setAttribute('id', `delete--comment-${commentData.comment.id}`);
+                deleteButton.innerText = 'Delete';
+                editForm.setAttribute('class', 'hidden');
+                editForm.setAttribute('id', `edit-form-${commentData.comment.id}`);
+                editLabel.innerText = 'Edit Comment:';
+                editText.setAttribute('name', 'body');
+                editText.setAttribute('id', `${commentData.comment.id}-edit-comment`);
+                editText.setAttribute('value', `${commentData.comment.body}`);
+                editText.setAttribute('value', `${commentData.comment.body}`);
+                editText.required = true;
+                editSubmit.setAttribute('class', 'edit-submit');
+                editSubmit.setAttribute('id', `edit-submit-${commentData.comment.id}`);
+                editSubmit.innerText = 'Submit Edit';
+
+                editForm.appendChild(editLabel)
+                editForm.appendChild(editText)
+                editForm.appendChild(editSubmit)
+                editDeleteDiv.appendChild(editButton);
+                editDeleteDiv.appendChild(deleteButton);
+                editDeleteDiv.appendChild(editForm);
+                newCommentWrapper.appendChild(editDeleteDiv);
 
                 commentTextarea.value = '';
                 commentTextarea.focus();

@@ -208,7 +208,7 @@ img {
     flex-direction: row;
     align-items: center;
     border-top: 3px solid lightgray;
-    border-bottom: 3px solid lightgray;
+    /* border-bottom: 3px solid lightgray; */
     border-collapse: collapse;
 }
 
@@ -329,4 +329,8 @@ img {
 #delete-logo {
     height: 56px;
     width: 56px;
+}
+
+.hidden {
+    display: none;
 }
