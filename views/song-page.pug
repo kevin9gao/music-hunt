@@ -3,6 +3,7 @@ append head
   link(rel='stylesheet' href='/stylesheets/song-page.css')
   script(src="/javascripts/song-page.js" type="module" defer)
   script(src="/javascripts/delete-pop-up.js" type="module" defer)
+  script(src="/javascripts/song-page-upvotes.js" type="module" defer)
 block content
   div#main-header
       div#routes
@@ -20,7 +21,6 @@ block content
             h2#artist-name= song.User.username
           div#visit-upvote-container
             if locals.authenticated
-              //- form(action=`/songs/${song.id}/delete` method="post")
               if locals.user.username === song.User.username
                 button#delete-button
                   div#delete-text-1 Delete
@@ -34,10 +34,18 @@ block content
                     div#delete-logo-box
                       img(id='delete-logo' src='https://icon-library.com/images/m-icon/m-icon-7.jpg')
                 //- TODO Change to href='profile page'
-            button#upvote-button
-              div#upvote-container
-                div#upvote-img
-                div#upvote-text UPVOTE ###
+            - let hasBeenClicked = "false"
+            - let count = 0;
+              each songUpvote in songUpvotes
+                if (songUpvote.songId === song.id)
+                  - count +=1
+                  if(locals.user && songUpvote.userId === locals.user.id)
+                     - hasBeenClicked = "true"
+            button(class="upvote-button" id=`${song.id}` data-click= hasBeenClicked )
+              div.upvote-container
+                div.upvote-img(id=`I${song.id}`)
+                div#upvote-word UPVOTE
+                div.upvote-text(id=`N${song.id}`)= count
       div#description
         p= song.description
         div

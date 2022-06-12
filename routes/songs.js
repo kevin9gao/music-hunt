@@ -15,7 +15,7 @@ router.get('/', asyncHandler(async (req, res) => {
         }
     );
     let count = 0;
-    res.render('songs', { songs, songUpvotes, count, db });
+    res.render('songs', { songs, songUpvotes, count });
 }));
 
 router.post('/upvote/:id', async (req, res) => {
@@ -150,10 +150,14 @@ router.get('/:name/:id', csrfProtection, asyncHandler(async (req, res) => {
         }, limit: 5
     })
 
+
+    const songUpvotes = await db.SongUpvote.findAll();
+
     res.render('song-page', {
         song,
         relatedSongs,
         comments,
+        songUpvotes,
         csrfToken: req.csrfToken(),
     })
 }));
