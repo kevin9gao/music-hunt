@@ -10,7 +10,7 @@ a {
     text-decoration: none;
 }
 
-.header_text_style {
+.header-text-style {
     color: #21293c;
     font-size: 24px;
     line-height: 32px;
@@ -19,7 +19,7 @@ a {
         sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
-.sub_header_text_style {
+.sub-header-text-style {
     color: #4b587c;
     font-size: 14px;
     line-height: 24px;
@@ -31,7 +31,7 @@ a {
     border-radius: 12px;
 }
 
-.upvote_text_style {
+.upvote-text-style {
     color: #4b587c;
     font-size: 12px;
     line-height: 20px;
@@ -40,7 +40,7 @@ a {
         sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
-.main_content_container {
+.main-content-container {
     box-sizing: border-box;
     display: inline-flex;
     flex-direction: row;
@@ -49,7 +49,7 @@ a {
     height: fit-content;
 }
 
-.songs_container {
+.songs-container {
     box-sizing: border-box;
     width: 800px;
 
@@ -63,7 +63,7 @@ a {
     padding-left: 71px;
 }
 
-#song_header {
+#song-header {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -71,21 +71,31 @@ a {
 }
 
 .song {
-    display: flex;
-    flex-direction: row;
-    box-sizing: content-box;
-    height: 82px;
+    display:flex;
     padding-bottom: 24px;
     padding-top: 24px;
 }
 
-.song_img {
+.song-content {
+    display: flex;
+    flex-direction: row;
+    box-sizing: content-box;
+    height: 82px;
+    background-color: #fff;
+    transition: background-color 0.3s ease-in;
+}
+
+.song-content:hover {
+    background-color: rgb(0, 75, 255, .05);
+}
+
+.song-img {
     width: 80px;
     height: 80px;
     padding-right: 8px;
 }
 
-.song_info {
+.song-info {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -94,7 +104,7 @@ a {
     margin-left: 16px;
 }
 
-#song_name {
+#song-name {
     color: #636876;
     font-size: 16px;
     line-height: 24px;
@@ -103,7 +113,7 @@ a {
         sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
-#song_artist {
+#song-artist {
     color: #667190;
     font-size: 16px;
     line-height: 24px;
@@ -118,7 +128,7 @@ a {
     margin: 8px 8px 8px 16px;
 }
 
-.upvote_button {
+.upvote-button {
     background: #fff;
     border: 1px solid #d9e1ec;
     width: 52px;
@@ -126,12 +136,12 @@ a {
     padding: 7px 4px 12px;
 }
 
-#upvote_container {
+#upvote-container {
     display: flex;
     flex-direction: column;
 }
 
-.upvote_icon {
+.upvote-icon {
     background-image: url(https://ph-static.imgix.net/upvote-burst-light-grey-v6.png?auto=compress&format=auto);
     width: 45px;
     height: 26px;
@@ -141,11 +151,25 @@ a {
     text-align: center;
 }
 
-.artist_block {
+.artist-block {
     color: #4b587c;
     font-size: 12px;
     font-weight: 600;
     line-height: 20px;
     margin-bottom: 24px;
 }
-/* TODO Add media screens for different size screens for main and sidebar content */
+
+.artist-container {
+    width: 280px;
+    height: fit-content;
+    justify-content: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #d9e1ec;
+    padding-bottom: 20px;
+}
+
+.artist-img {
+    width: 280px;
+    height: 164px;
+    border-radius: 10%;
+}
