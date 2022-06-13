@@ -232,7 +232,7 @@ img {
     flex-direction: row;
     align-items: center;
     border-top: 3px solid lightgray;
-    border-bottom: 3px solid lightgray;
+    /* border-bottom: 3px solid lightgray; */
     border-collapse: collapse;
 }
 
@@ -337,8 +337,6 @@ img {
     width: 56px;
 }
 
-
-
 #options-pop-up-background {
     position: fixed;
     left: 0;
@@ -433,4 +431,8 @@ img {
     top: 30px;
     height: 90px;
     width: 90px;
+}
+
+.hidden {
+    display: none;
 }

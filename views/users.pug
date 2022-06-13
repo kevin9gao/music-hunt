@@ -32,11 +32,12 @@ block content
                                 td(class='column three body').biographies= user.biography
                             div.table-body-wrappers
                                 if user.Songs.length > 0
-                                    td(class='column four body')
-                                        div.user-songs-list
-                                            each song in user.Songs
-                                                div.user-songs
-                                                    a(href=`/songs/${song.name}/${song.id}`)= song.name
+                                    - let fiveSongs = user.Songs.filter((song, i) => i < 5)
+                                        td(class='column four body')
+                                            div.user-songs-list
+                                                each song in fiveSongs
+                                                    div.user-songs
+                                                        a(href=`/songs/${song.name}/${song.id}`)= song.name
 
                                 else
                                     td(class='column four body') No Songs

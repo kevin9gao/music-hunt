@@ -1,7 +1,48 @@
+.body-container {
+  /* background-color: #004bff; */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  /* margin: 0px 50px; */
+}
+
+.body-container > *{
+  max-width: 75%;
+}
+
+a {
+  background-color: #fff;
+}
+
+a:hover {
+  color: rgb(0, 0, 0);
+  font-weight: 700;
+}
+
+.body-container table {
+  padding: 10px 30px;
+  /* box-shadow: 0px 0px 2px 2px #8c8f94; */
+  border-radius: 15px;
+}
+
+table {
+  border-spacing: 15px 50px;
+  /* border-bottom: #4b587c 1px solid; */
+}
+
+table th{
+  height: 70px;
+}
+
+table img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
 .upvote_icon {
   position: relative;
   left: 10px;
-  bottom: 1px;
+  bottom: -3px;
   width: 0px;
   height: 0px;
   border-bottom: 11px solid #8c8f94;
@@ -21,10 +62,11 @@
   width: 52px;
   height: 64px;
   padding: 7px 4px 12px;
+  border-radius: 10px;
 }
 
 .upvote_button:hover {
-  border: #004bff solid 1px;
+  box-shadow: 0px 0px 1.5px 1.5px #8c8f94;
 }
 
 

@@ -134,8 +134,12 @@ router.get('/:name/:id', csrfProtection, asyncHandler(async (req, res) => {
         where: {
             songId: songId
         },
+        order: [
+            ['createdAt', 'ASC']
+        ],
         include: [db.User]
     })
+
 
     if (!song) {
         res.redirect(`/${req.params.name}/${songId}`)
@@ -172,10 +176,27 @@ router.post('/comments/new', asyncHandler(async (req, res) => {
         body,
     });
 
-    comment.save();
+    await comment.save();
 
     res.json({ comment, username, profilePic, full_name });
 }));
+
+router.put('/comments/:id', asyncHandler(async (req, res) => {
+    // console.log(req.body);
+    const comment = await db.Comment.findByPk(req.params.id);
+
+    comment.body = req.body.body;
+    await comment.save();
+
+    res.json({ message: 'Edit', comment });
+}))
+
+router.delete('/comments/:id', asyncHandler(async (req, res) => {
+    const comment = await db.Comment.findByPk(req.params.id);
+    await comment.destroy();
+
+    res.json({ message: 'Destroy!' })
+}))
 
 router.post('/:id/delete', async (req, res) => {
     const song = await db.Song.findByPk(req.params.id)
