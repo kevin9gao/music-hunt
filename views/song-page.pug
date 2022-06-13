@@ -60,7 +60,7 @@ block content
           - let link = song.urlLink.replace(".com/", ".com/embed/") //changes the spotify link to a url that can be embedded
           iframe(
             style = "border-radius:12px" src = `${link.slice(0, -20)}?utm_source=generator`
-            width = "100%" height = "380" frameBorder = "0"
+            width = "100%" height = "380" frameBorder = "0" allowfullscreen = ""
             allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture")
   div#related-title
     //- TODO Include img link to be song.User.profilePic
