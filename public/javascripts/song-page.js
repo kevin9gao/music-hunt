@@ -1,5 +1,5 @@
 // grab the comment section box and submit comment button
-const commentBox = document.getElementById('comment-box')
+const commentBox = document.getElementById('comment-box');
 const commentButton = document.getElementById('submit-comment-button');
 
 // event listener for submit comment button
@@ -167,14 +167,14 @@ const deleteButtons = document.querySelectorAll('.delete-button');
 
 // incorporate delete event listener to all delete buttons loaded initially
 for (let i = 0; i < deleteButtons.length; i++) {
-    const del = deleteButtons[i]
+    const del = deleteButtons[i];
     del.addEventListener('click', deleteEventListener);
 }
 
 async function deleteEventListener(e) {
     e.preventDefault();
     const commentId = e.target.id.split('-')[2];
-    const deleteButton = document.getElementById(`delete-comment-${commentId}`)
+    const deleteButton = document.getElementById(`delete-comment-${commentId}`);
 
     const res = await fetch(`/songs/comments/${commentId}`, {
         method: 'DELETE'
@@ -184,7 +184,7 @@ async function deleteEventListener(e) {
 
     if (commentDeleteData.message = 'Destroy!') {
         const commentContainer = document.getElementById(`comment-wrapper-${commentId}`);
-        const editDelContainer = document.getElementById(`edit-and-delete-${commentId}`)
+        const editDelContainer = document.getElementById(`edit-and-delete-${commentId}`);
         commentContainer.remove();
         editDelContainer.remove();
     }
