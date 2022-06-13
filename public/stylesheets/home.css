@@ -129,22 +129,16 @@ a {
 
 .upvote-button {
     background: #fff;
-    border: 1px solid #8c8f94;
+    border: 1px solid #d9e1ec;
     width: 52px;
     height: 64px;
     padding: 7px 4px 12px;
-    border-radius: 10px;
-}
-
-.upvote_button:hover {
-    box-shadow: 0px 0px 1.5px 1.5px #8c8f94;
 }
 
 #upvote-container {
     display: flex;
     flex-direction: column;
 }
-
 
 .upvote_icon {
     position: relative;
@@ -156,7 +150,6 @@ a {
     border-left: transparent solid 11px;
     border-right: transparent solid 11px;
     border-radius: 9px;
-    margin-bottom: 9px;
 }
 
 .artist-block {
