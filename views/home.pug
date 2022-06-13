@@ -5,29 +5,35 @@ append head
   link(rel='stylesheet' href='/stylesheets/home.css')
   script(src="/javascripts/index.js" type="module" defer)
 block content
-  div.main_content_container
-    main.songs_container
+  div.main-content-container
+    main.songs-container
       div
-        div#song_header
-          div.header_text_style#song_header= 'Trending Music 👇'
-          div.sub_header_text_style= 'Featured'
+        div#song-header
+          div.header-text-style#song-header= 'Trending Music 👇'
+          div.sub-header-text-style= 'Featured'
         //- i for finding number of upvotes associated with song
         - let i = 0
         each song in trendingSongs
           div.song
-            a(href=`/songs/${song.name}/${song.id}`)
-              img.song_img(src=song.albumArt)
-            div.song_info
+            div.song-content
               a(href=`/songs/${song.name}/${song.id}`)
-                div#song_name= song.name
-                div#song_artist= song.User.username
-            div.upvotes
-              button.upvote_button(type='button')
-                div#upvote_container
-                  div.upvote_icon
-                  div.upvote_text_style= topUpvotes[i]
-                  - i = i + 1
-
+                img.song-img(src=song.albumArt)
+              div.song-info
+                a(href=`/songs/${song.name}/${song.id}`)
+                  div#song-name= song.name
+                  div#song-artist= song.User.username
+              div.upvotes
+                button.upvote-button(type='button')
+                  div#upvote-container
+                    div.upvote-icon
+                    div.upvote-text-style= topUpvotes[i]
+                    - i = i + 1
+        div
     aside.sidebar
-      div.artist_block= 'DISCOVER NEW ARTISTS →'
-      div= 'artist here'
+      div.artist-block= 'DISCOVER NEW ARTISTS →'
+      each artist in userArtists
+        div.artist-container
+          a(href=`/users/${artist.username}`)
+            img(src=artist.profilePic).artist-img
+          div.sub-header-text-style= `@${artist.username}`
+      div

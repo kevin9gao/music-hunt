@@ -10,7 +10,7 @@ a {
     text-decoration: none;
 }
 
-.header_text_style {
+.header-text-style {
     color: #21293c;
     font-size: 24px;
     line-height: 32px;
@@ -19,7 +19,7 @@ a {
         sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
-.sub_header_text_style {
+.sub-header-text-style {
     color: #4b587c;
     font-size: 14px;
     line-height: 24px;
@@ -31,7 +31,7 @@ a {
     border-radius: 12px;
 }
 
-.upvote_text_style {
+.upvote-text-style {
     color: #4b587c;
     font-size: 12px;
     line-height: 20px;
@@ -40,7 +40,7 @@ a {
         sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
-.main_content_container {
+.main-content-container {
     box-sizing: border-box;
     display: inline-flex;
     flex-direction: row;
@@ -49,21 +49,20 @@ a {
     height: fit-content;
 }
 
-.songs_container {
+.songs-container {
     box-sizing: border-box;
     width: 800px;
-
 }
 
 .sidebar {
     box-sizing: content-box;
     width: 280px;
-    border-left: 1px solid #d9e1ec;
-    margin-left: 64px;
-    padding-left: 71px;
+    margin-left: 5vw;
+    padding-left: 6vw;
+    box-shadow: inset 5px 0 5px -5px grey;
 }
 
-#song_header {
+#song-header {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -71,21 +70,31 @@ a {
 }
 
 .song {
-    display: flex;
-    flex-direction: row;
-    box-sizing: content-box;
-    height: 82px;
+    display:flex;
     padding-bottom: 24px;
     padding-top: 24px;
 }
 
-.song_img {
+.song-content {
+    display: flex;
+    flex-direction: row;
+    box-sizing: content-box;
+    height: 82px;
+    background-color: #fff;
+    transition: background-color 0.3s ease-in;
+}
+
+.song-content:hover {
+    background-color: rgb(0, 75, 255, .05);
+}
+
+.song-img {
     width: 80px;
     height: 80px;
     padding-right: 8px;
 }
 
-.song_info {
+.song-info {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -94,7 +103,7 @@ a {
     margin-left: 16px;
 }
 
-#song_name {
+#song-name {
     color: #636876;
     font-size: 16px;
     line-height: 24px;
@@ -103,7 +112,7 @@ a {
         sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
-#song_artist {
+#song-artist {
     color: #667190;
     font-size: 16px;
     line-height: 24px;
@@ -118,7 +127,7 @@ a {
     margin: 8px 8px 8px 16px;
 }
 
-.upvote_button {
+.upvote-button {
     background: #fff;
     border: 1px solid #8c8f94;
     width: 52px;
@@ -131,10 +140,11 @@ a {
     box-shadow: 0px 0px 1.5px 1.5px #8c8f94;
 }
 
-#upvote_container {
+#upvote-container {
     display: flex;
     flex-direction: column;
 }
+
 
 .upvote_icon {
     position: relative;
@@ -149,7 +159,7 @@ a {
     margin-bottom: 9px;
 }
 
-.artist_block {
+.artist-block {
     color: #4b587c;
     font-size: 12px;
     font-weight: 600;
@@ -157,4 +167,17 @@ a {
     margin-bottom: 24px;
 }
 
-/* TODO Add media screens for different size screens for main and sidebar content */
+.artist-container {
+    width: 280px;
+    height: fit-content;
+    justify-content: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #d9e1ec;
+    padding-bottom: 20px;
+}
+
+.artist-img {
+    width: 280px;
+    height: 164px;
+    border-radius: 10%;
+}

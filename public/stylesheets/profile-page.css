@@ -1,5 +1,6 @@
 body {
   display: block;
+  overflow: overlay;
 }
 
 .header-wrapper{
@@ -7,6 +8,7 @@ body {
   background-image: linear-gradient(0deg, #5381ed 100%, #466fcf 90%);
   justify-content: flex-start;
   box-shadow: 0px 1px 4px 2.5px rgba(103, 100, 100, 0.7);
+  width: 100%;
 }
 
 #name-wrapper {
@@ -36,6 +38,7 @@ body {
 .credentials-wrapper > p {
   color: white;
   font-weight: 500;
+  text-align: center;
 }
 
 #full-name {
@@ -56,14 +59,20 @@ body {
 }
 
 #edit-profile-button {
-  width: 100px;
-  height: 40px;
-  border: none;
-  border-radius: 3px;
-  margin-top: 10px;
-  font: 14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
-  box-shadow: 0px 0px 2.5px 2px rgba(103, 100, 100, 0.7);
+  height: 45px;
+  width: 110px;
+  max-width: 200px;
+  color: white;
+  background-color: #004bff;
+  border: 3px solid #7e8cb1;
+  border-radius: 5px;
+  font: 14px -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  font-weight: 500;
+}
 
+#edit-profile-button:hover {
+  transition: ease-in all .8s;
+  background-image: linear-gradient(to left, #743ad5, #d53a9d);
 }
 
 #bio-wrapper {
@@ -82,4 +91,87 @@ body {
 
 #biography {
   font-size: 20px;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.body-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 40px 0 0 1em;
+}
+
+.sidebar {
+  box-sizing: content-box;
+  width: 280px;
+  margin-left: 5vw;
+  padding-left: 6vw;
+  box-shadow: inset 5px 0 5px -5px grey;
+}
+
+.songs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+}
+
+.album-art-wrappers img {
+  width: 10vh;
+}
+
+.header_text_style {
+  color: #21293c;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+      sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  text-align: center;
+}
+
+th,
+td {
+  padding: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+th {
+  top: 80px;
+  text-align: left;
+  font-weight: normal;
+  font-size: 1.1rem;
+  color: white;
+}
+
+th:last-child {
+  border: 0;
+}
+
+td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #808080;
+}
+
+tr:nth-child(even) td {
+  background: #f8f6ff;
+}
+
+.artist-img {
+  width: 30vh;
+}
+
+.artist-container {
+  width: 280px;
+  height: fit-content;
+  justify-content: center;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #d9e1ec;
+  padding-bottom: 20px;
 }
