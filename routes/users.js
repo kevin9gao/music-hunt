@@ -261,28 +261,27 @@ router.post('/:id', requireAuth, restoreUser, csrfProtection, asyncHandler(async
 
   const { profilePic, full_name, biography } = req.body;
 
-  await user.update({
-    profilePic,
-    full_name, //placeholder until it successfully updates database
-    biography
-  });
+  if (profilePic !== '') {
+    await user.update({
+      profilePic
+    })
+  }
+
+  if (full_name !== '') {
+    await user.update({
+      full_name
+    })
+  }
+
+  if (biography !== '') {
+    await user.update({
+      biography
+    })
+  }
 
   await user.save();
 
-  // const newUser = await db.User.create({
-  //   username: user.username,
-  //   hashedPassword: user.hashedPassword,
-  //   full_name: 'Isaac',
-  // })
-
-  // await user.destroy();
-
-  // user = newUser;
-
   res.redirect(`/users/${user.username}`)
-
-  // res.status(201).json()
-
 }))
 
 router.get('/')

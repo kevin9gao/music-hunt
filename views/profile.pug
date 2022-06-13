@@ -1,7 +1,7 @@
 extends layout.pug
 
 append head
-    title= `Music Hunt - ${user.full_name}`
+    title= `Music Hunt - ${artist.full_name}`
     link(rel='stylesheet' href='/stylesheets/profile-page.css')
     script(src="/javascripts/index.js" type="module" defer)
 
@@ -15,9 +15,10 @@ block content
                     p#full-name= artist.full_name
                     p#username= `@${artist.username}`
                     p#email= artist.email
-                    if locals.user.username === artist.username
-                        form(action=`/users/${user.username}/edit` method='get')
-                            button#edit-profile-button Edit Profile
+                    if locals.user
+                        if locals.user.username === artist.username
+                            form(action=`/users/${user.username}/edit` method='get')
+                                button#edit-profile-button Edit Profile
                 div#bio-wrapper
                     p#bio-description A little about me:
                     p#biography= artist.biography
