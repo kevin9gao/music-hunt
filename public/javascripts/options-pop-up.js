@@ -3,7 +3,6 @@ window.addEventListener("load", event => {
   const options = document.getElementById("options-button")
   const upvoteButton = document.getElementsByClassName("upvote-button")
   const songId = upvoteButton[0].id
-  const name = songName.value
 
   if (options) {
     options.onclick = event => {
