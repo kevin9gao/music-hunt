@@ -93,8 +93,9 @@ block content
               p(class='comment-body-text' id=`${comment.id}-comment-body-text`)= `${comment.User.full_name}: ${comment.body}`
           if (locals.user && locals.user.id === comment.User.id)
             div(class='edit-and-delete', id=`edit-and-delete-${comment.id}`)
-              button(class='edit-button' id=`edit-comment-${comment.id}`) Edit
-              button(class='delete-button' id=`delete-comment-${comment.id}`) Delete
+              div.edit-del-container
+                button(class='edit-button' id=`edit-comment-${comment.id}`) Edit
+                button(class='delete-button' id=`delete-comment-${comment.id}`) Delete
               form(class='hidden' id=`edit-form-${comment.id}`)
                 label Edit Comment:
                 textarea(name='body' id=`${comment.id}-edit-comment` value=comment.body required)
