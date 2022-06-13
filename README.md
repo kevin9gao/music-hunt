@@ -28,8 +28,47 @@ _Features Available To Logged In Users_
 
 A logged in user has access to a few more features than a standard user. Firstly, logged in users can upload their own songs through a tab on the navbar. Secondly, logged in users have access to their profile page, and may edit their profile through the navbar. Finally, logged in users may submit upvotes on songs, as well as comment on songs. These features are dynamic and will update the page with their upvotes and comments in real time.
 
+## Notable Features
 
-7. Production README
-* Discussion of two features that show off the team's technical abilities
-* Discussion of both challenges faced and the way the team solved them
-* Code snippets to highlight the best code
+### Dynamic Upvotes and Comments
+
+All users can see how many upvotes a song has, in addition to the comments other users have made on the song. Logged in users have the ability to add a single upvote to a song, and make and edit comments. Upvotes and comments are done dynamically, so a page refresh is not needed to display the updated upvote counts and new comments.
+
+
+_Songs Pug File:_
+
+![/songs Pug File](./images/songs%20pug%20AAW13.png)
+
+Javascript is incorporated into the Pug file HTML so that, upon refresh of the /songs page, the total number of upvotes for a certain song is fetched from the _songUpvotes_ table and set to the innerHTML of the upvotes button. The _hasBeenClicked_ property checks whether the currently logged in user has clicked the upvote button on that specific song or not.
+
+
+_Songs Route:_
+
+![/songs Route File](./images/songs%20router%20AAW13.png)
+
+In the `GET /songs` route: songs, songUpvotes, and a count variable are passed into the _songs_ pug file. In the `POST /upvotes/:id` route, when a POST request is made to /upvotes/:id, an upvote is either created or destroyed in the database, based on whether an upvote currently exists for that song or not.
+
+_Song Upvotes Frontend Javascript (Dynamic Factor):_
+
+![Song Upvotes Frontend Javascript](./images/songs-upvotes%20frontend%20javascript%20AAW13.png)
+
+In the frontend JavaScript, an event listener is added to the upvote button. Upon click, a POST request is made to `/songs/upvote/${songId}` using a fetch call. If the upvote button has been clicked for the currently logged in user, the click status is set to false, and vice versa. This whole process allows for dynamic upvoting of a song. Dynamic posting and editing of comments is done with a similar process.
+
+
+### Listing Songs From A Specific Artists Within Their Row On /users Page
+
+In the `/users` page, a list of users is displayed using a table, and a column for 5 of each user's uploaded tracks (if they have uploaded any tracks) exists.
+
+![Users Page](./images/users%20page%20AAW13.png)
+
+_Users Route:_
+
+![Users Route](./images/users%20route%20AAW13.png)
+
+The `GET /users` route handler here is quite simple, just rendering the _users_ Pug file, passing in a list of all users, with their associated songs in the Songs table.
+
+_Users Pug:_
+
+![Users Pug](./images/users%20pug%20AAW13.png)
+
+In the _users_ Pug file, a column is created for listing all of the songs of a specific user _if they have uploaded any songs._ If they have, a JavaScript array.filter method is called upon the total list of songs that an artist has and the resulting 5 songs are displayed in the pug.

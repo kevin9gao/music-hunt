@@ -4,7 +4,9 @@ const { csrfProtection, asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
+const { Sequelize } = require('sequelize');
 const db = require('../db/models');
+const { sequelize } = require('../db/models');
 const { loginUser, logoutUser, restoreUser, requireAuth } = require('./auth');
 const { locals } = require('../app');
 
@@ -13,8 +15,6 @@ router.get('/', asyncHandler(async (req, res, next) => {
   const users = await db.User.findAll({
     include: [db.Song]
   });
-
-  // console.log(users);
 
   res.render('users', {
     users
@@ -193,7 +193,7 @@ router.post('/demoUser', asyncHandler(async (req, res) => {
 }));
 
 router.get('/:id', asyncHandler(async (req, res, next) => {
-  const user = await db.User.findOne({
+  const artist = await db.User.findOne({
     where: { username: req.params.id }
   });
 
@@ -201,23 +201,37 @@ router.get('/:id', asyncHandler(async (req, res, next) => {
 
   const songs = await db.Song.findAll({
     where: {
-      artistId: user.id
+      artistId: artist.id
     },
-
   });
 
-  // const songUpvotes = await db.SongUpvote.findAll({
-  //   where: {
-  //     songId: songs.song.id
-  //   },
-  // });
+  // find artists (users that have songs)
+  const artists = await db.Song.findAll({
+    attributes: [
+      [Sequelize.fn('DISTINCT', Sequelize.col('artistId')), 'artistId'],
+    ],
+    group: ['artistId'],
+  })
 
-  // console.log (user)
-  // console.log(songs)
-  // console.log(songUpvotes)
+  // find random artists - EDGE case if there are less than 3 artists (seeder data will not allow this)
+  const randArr = [];
+  const max = artists.length -1;
+  while (randArr.length < 3) {
+    let rand = Math.floor(Math.random() * (max + 1));
 
-  res.render('profile', { title: "Profile Page", user, songs }) //remenber to include songUpvotes
+    if (!randArr.includes(artists[rand].artistId)) {
+      randArr.push(artists[rand].artistId);
+    }
+  }
 
+  const userArtists = await db.User.findAll({
+    where: {
+      id: randArr
+    },
+    order: sequelize.random(),
+  })
+  console.log(userArtists)
+  res.render('profile', { title: "Profile Page", artist, songs, userArtists }) //remenber to include songUpvotes
 }))
 
 
