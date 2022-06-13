@@ -84,6 +84,7 @@ a {
     height: 82px;
     background-color: #fff;
     transition: background-color 0.3s ease-in;
+    align-items: center;
 }
 
 .song-content:hover {
@@ -183,7 +184,11 @@ a {
     font-weight: 600;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
       sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-  }
+}
+
+.upvotes {
+    margin-right: .7em;
+}
 
 .artist-block {
     color: #4b587c;
