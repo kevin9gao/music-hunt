@@ -211,4 +211,67 @@ router.post('/:id/delete', async (req, res) => {
     await song.destroy();
     req.session.save(() => res.redirect('/songs'))
 })
+
+
+router.get('/:name/:id/edit', csrfProtection, async (req, res) => {
+    const song = await db.Song.findByPk(req.params.id, { include: [db.User] })
+    res.render("update-song", {
+        song,
+        csrfToken: req.csrfToken()
+    })
+})
+
+
+
+const songUpdateValidators = [
+    check("name")
+        .exists({ checkFalsy: true })
+        .withMessage("Please enter a name for your song.")
+        .isLength({ max: 50 })
+        .withMessage("Song name is too long."),
+    check("urlLink")
+        .exists({ checkFalsy: true })
+        .withMessage("Please enter a link for the song")
+        .custom(value => {
+            if (!value.includes("https://open.spotify.com/track")) {
+                return Promise.reject("Must be a spotify link.")
+            } else return true
+        }),
+    check("albumArt")
+        .custom(value => {
+            if (value.endsWith("png") || value.endsWith("jpg") || value.endsWith("jpeg") || value.endsWith("image") || value === '') {
+                return true
+            } else {
+                return Promise.reject("Album Art must be an image url")
+            }
+        })
+]
+
+router.post('/:name/:id/edit', csrfProtection, requireAuth, songUpdateValidators, async (req, res) => {
+    const song = await db.Song.findByPk(req.params.id, { include: [db.User] })
+
+    if (res.locals.user.username === song.User.username) {
+        let { name, urlLink, albumArt, description } = req.body
+
+        await song.update({
+            name,
+            urlLink,
+            albumArt,
+            description
+        })
+        const validatorErrors = validationResult(req)
+
+        if (validatorErrors.isEmpty()) {
+            await song.save();
+            req.session.save(() => res.redirect('/songs'))
+        } else {
+            const errors = validatorErrors.array().map(error => error.msg);
+            res.render('update-song', {
+                errors,
+                song,
+                csrfToken: req.csrfToken()
+            })
+        }
+    } else req.session.save(() => res.redirect('/'))
+})
 module.exports = router;
