@@ -14,17 +14,13 @@ block content
 
               div.picture-box
                 label Profile Picture
-                //- value=user.profilePic.src
-                input(type="img" name='profilePic' value='https://static01.nyt.com/images/2014/07/23/upshot/23UP-cat/23UP-cat-superJumbo.jpg')
+                input(type="img" name='profilePic' value=user.profilePic)
               div.full-name-box
                 label Full Name
-
                 input(type="text" name='full_name' value=user.full_name)
               div.biography-box
                 label Biography
-
-                //- value=user.biography
-                textarea(name="biography" cols="30", rows="10" value=user.biography)
+                textarea(name="biography" cols="30" rows="10" value=user.biography)
               div.button-box
                 a(href=`/users/${user.username}` class='edit-profile-buttons') Cancel
                 button(class='edit-profile-buttons') Submit Changes
