@@ -120,10 +120,15 @@ a {
 
 .upvote_button {
     background: #fff;
-    border: 1px solid #d9e1ec;
+    border: 1px solid #8c8f94;
     width: 52px;
     height: 64px;
     padding: 7px 4px 12px;
+    border-radius: 10px;
+}
+
+.upvote_button:hover {
+    box-shadow: 0px 0px 1.5px 1.5px #8c8f94;
 }
 
 #upvote_container {
@@ -132,13 +137,16 @@ a {
 }
 
 .upvote_icon {
-    background-image: url(https://ph-static.imgix.net/upvote-burst-light-grey-v6.png?auto=compress&format=auto);
-    width: 45px;
-    height: 26px;
-    background-position: 0;
-    background-repeat: no-repeat;
-    background-size: 2900%;
-    text-align: center;
+    position: relative;
+    left: 10px;
+    bottom: -3px;
+    width: 0px;
+    height: 0px;
+    border-bottom: 11px solid #8c8f94;
+    border-left: transparent solid 11px;
+    border-right: transparent solid 11px;
+    border-radius: 9px;
+    margin-bottom: 9px;
 }
 
 .artist_block {
