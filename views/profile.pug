@@ -6,19 +6,56 @@ append head
     script(src="/javascripts/index.js" type="module" defer)
 
 block content
-    div.header-wrapper
-        div#name-wrapper
-            div#profile-pic-wrapper
-                img(src=user.profilePic).profile-pic
-            div.credentials-wrapper
-                p#full-name= user.full_name
-                p#username= `@${user.username}`
-                p#email= user.email
-                form(action=`/users/${user.username}/edit` method='get')
-                    button#edit-profile-button Edit Profile
-            div#bio-wrapper
-                p#bio-description A little about me:
-                p#biography= user.biography
+    div.page-container
+        div.header-wrapper
+            div#name-wrapper
+                div#profile-pic-wrapper
+                    img(src=artist.profilePic).profile-pic
+                div.credentials-wrapper
+                    p#full-name= artist.full_name
+                    p#username= `@${artist.username}`
+                    p#email= artist.email
+                    if locals.user.username === artist.username
+                        form(action=`/users/${user.username}/edit` method='get')
+                            button#edit-profile-button Edit Profile
+                div#bio-wrapper
+                    p#bio-description A little about me:
+                    p#biography= artist.biography
+        div.body-wrapper
+            main.songs-container
+                if songs.length > 0
+                    table
+                        thead
+                            tr.songs-table-head
+                                th.album-art-column-header
+                                th.header_text_style Song Name
+                                th.header_text_style Listen
+
+                        tbody.songs-table-body
+                            each song in songs
+                                - let link = song.urlLink.replace(".com/", ".com/embed/") //changes the spotify link to a url that can be embedded
+
+                                tr.songs-table-body
+                                    td.album-art-wrappers
+                                        a(href=`/songs/${song.name}/${song.id}`)
+                                            img(src=song.albumArt).album-art
+                                    td.song-name-wrappers
+                                        a(href=`/songs/${song.name}/${song.id}`)
+                                            p.song-names= song.name
+                                    td.song-embeds
+                                        iframe(style = "border-radius:12px" src = `${link.slice(0, -20)}?utm_source=generator` width = "100%" height = "80" frameBorder = "0"  allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture")
+
+                else
+                    td(class='column four body') No Songs
+
+            aside.sidebar
+                div.artist-block= 'DISCOVER NEW ARTISTS →'
+                each artist in userArtists
+                    div.artist-container
+                        a(href=`/users/${artist.username}`)
+                            img(src=artist.profilePic).artist-img
+                        div.sub-header-text-style= `@${artist.username}`
+
 
 
 
@@ -47,7 +84,7 @@ block content
     //-                 td= song.name
 
 
-                //- each songUpvote in songUpvotes
-                //-     if (songUpvote.songId === song.id)
-                //-         - count +=1
-                //- td= count
+        //- each songUpvote in songUpvotes
+        //-     if (songUpvote.songId === song.id)
+        //-         - count +=1
+        //- td= count
