@@ -1,0 +1,33 @@
+extends layout.pug
+
+append head
+    title= `Music Hunt - ${song.name}`
+    link(rel='stylesheet' href='/stylesheets/song-upload.css')
+
+block content
+ if errors
+    p The following errors took place:
+      ul
+        each error in errors
+          li= error
+ form(action=`/songs/${song.name}/${song.id}/edit` method="post")
+    input(type='hidden' name="_csrf" value=csrfToken)
+    div.body-container
+      div.body-container-elements
+        div.new-song-title Update Your Song👇
+
+        div.song-name-box
+          label Song Name
+          input(type="text" name="name" value=song.name required)
+        div.song-link-box
+          Label Spotify Song Link
+          input(type="text" name="urlLink" value=song.urlLink required)
+        div.song-picture-box
+          Label Album Art Image Link
+          input(type="text" name="albumArt" value=song.albumArt)
+        div.description-box
+          Label Description
+          textarea(name="description", value=song.description cols="30", rows="5")
+        div.button
+          a(href=`/songs/${song.name}/${song.id}` class='edit-profile-buttons') Cancel
+          button Update Song

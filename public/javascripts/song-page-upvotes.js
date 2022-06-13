@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded", (event) => {
   const upvoteButtons = document.getElementsByClassName("upvote-button")
   const upvoteButton = upvoteButtons[0]
-  const loggedInUser = document.getElementById('current-user').value
+  const loggedInUser = document.getElementById('current-user')
 
   if (loggedInUser) {
     const songId = upvoteButton.id

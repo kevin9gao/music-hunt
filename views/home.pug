@@ -4,8 +4,10 @@ append head
   title= title
   link(rel='stylesheet' href='/stylesheets/home.css')
   script(src="/javascripts/index.js" type="module" defer)
+  script(src="/javascripts/home-upvotes.js" type="module" defer)
 block content
   div.main-content-container
+    input(type='hidden' name='user' value=locals.user)#current-user
     main.songs-container
       div
         div#song-header
@@ -22,11 +24,15 @@ block content
                 a(href=`/songs/${song.name}/${song.id}`)
                   div#song-name= song.name
                   div#song-artist= song.User.username
+              - let hasBeenClicked = "false"
+              each songUpvote in songUpvotes
+                if (songUpvote.songId === song.id && locals.user && songUpvote.userId === locals.user.id)
+                   - hasBeenClicked = "true"
               div.upvotes
-                button.upvote-button(type='button')
+                button(class="upvote-button" id=`${song.id}` data-click= hasBeenClicked )
                   div#upvote-container
-                    div.upvote-icon
-                    div.upvote-text-style= topUpvotes[i]
+                    div.upvote-icon(id=`I${song.id}`)
+                    div.upvote-text-style(id=`N${song.id}`)= topUpvotes[i]
                     - i = i + 1
         div
     aside.sidebar

@@ -9,25 +9,34 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
-  const songs = await db.SongUpvote.findAll();
+  const songUpvotes = await db.SongUpvote.findAll();
   const topSongs = [];
   const topUpvotes = [];
-  const upvoteMap = {}
+  const upvoteMap = {};
+  const upvoteUserIds = []
 
   // Create a map of all songs and their upvotes
-  for (let song of songs) {
-    let songId = `${song.songId}`;
+  for (let songUpvote of songUpvotes) {
+    let songId = `${songUpvote.songId}`;
 
     if (songId in upvoteMap) {
       upvoteMap[songId]++;
+      upvoteUserIds[songId - 1].push(songUpvote.userId)
     } else {
       upvoteMap[songId] = 1;
+      upvoteUserIds.push([songUpvote.userId])
     }
   }
 
   //- Get their keys and values
   const upvoteValues = Object.values(upvoteMap);
   const songIdKeys = Object.keys(upvoteMap);
+
+  // let topSongsUpvoteUsersIds = []
+
+  console.log(upvoteValues);
+  console.log(songIdKeys);
+
 
   // find top 5 most upvoted songs
   for (let i = 0; i < 10; i++) {
@@ -37,6 +46,7 @@ router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
 
     topSongs.push(songIdKeys.splice(index, 1)[0]);
     topUpvotes.push(upvoteValues.splice(index, 1)[0]);
+    // topSongsUpvoteUsersIds.push()
   }
 
   let trendingSongs = [];
@@ -50,6 +60,7 @@ router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
     });
 
     trendingSongs.push(findSong[0]);
+    // trendingSongsUpvoteIds.push()
   }
 
   // find artists (users that have songs)
@@ -62,7 +73,7 @@ router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
 
   // find random artists - EDGE case if there are less than 3 artists (seeder data will not allow this)
   const randArr = [];
-  const max = artists.length -1;
+  const max = artists.length - 1;
   while (randArr.length < 3) {
     let rand = Math.floor(Math.random() * (max + 1));
 
@@ -78,15 +89,18 @@ router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
     order: sequelize.random(),
   })
 
+  // console.log(topUpvotes)
+
   res.render('home', {
     title: 'Music Hunt',
     trendingSongs,
     topUpvotes,
+    songUpvotes,
     userArtists,
   });
 }));
 
-router.get('/about', async(req, res) => {
+router.get('/about', async (req, res) => {
   res.render('about')
 })
 

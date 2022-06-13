@@ -2,7 +2,7 @@ extends layout
 append head
   link(rel='stylesheet' href='/stylesheets/song-page.css')
   script(src="/javascripts/song-page.js" type="module" defer)
-  script(src="/javascripts/delete-pop-up.js" type="module" defer)
+  script(src="/javascripts/options-pop-up.js" type="module" defer)
   script(src="/javascripts/song-page-upvotes.js" type="module" defer)
 block content
   div#main-header
@@ -22,9 +22,17 @@ block content
           div#visit-upvote-container
             if locals.authenticated
               if locals.user.username === song.User.username
-                button#delete-button
-                  div#delete-text-1 Delete
-                  div#delete-text-2 Song?
+                //- input(type="hidden" value=locals.user.username name="localsName")
+                button#options-button
+                  div#options-img-container
+                    img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Windows_Settings_icon.svg/1200px-Windows_Settings_icon.svg.png")#options-img
+                div#options-pop-up-background
+                  div#options-pop-up-form
+                    img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Windows_Settings_icon.svg/1200px-Windows_Settings_icon.svg.png")#menu-img
+                    form(action=`/songs/${song.name}/${song.id}/edit` method="get")
+                      button#update-option.option-buttons Update Song
+                    button#delete-option.option-buttons Delete Song
+                    button#close-options X
                 div#delete-pop-up-background
                   div#delete-pop-up-form
                     form(action=`/songs/${song.id}/delete` method="post" style="display: inline-block;")
@@ -56,11 +64,13 @@ block content
             allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture")
   div#related-title
     //- TODO Include img link to be song.User.profilePic
-    img(src=song.albumArt).img-size-1
+    //- div.img-size-1
+    a(href=`/users/${song.User.username}`).img-size-1
+      img(src=song.User.profilePic ).img-size-1#artist-img
     div More from this artist . . .
   div#related-container.text-style-1
       each song in relatedSongs
-        a(href=`/songs/${song.name}/${song.id}`).related-song
+        a(href=`/songs/${song.name}/${song.id}` style=` style: background-image: ${song.albumArt}`).related-song
           img(src=song.albumArt).img-size-2
           div.centered= song.name
   div#comment-section-container
@@ -72,7 +82,7 @@ block content
             input(type='hidden' name='user' value=locals.user)#current-user
             textarea(name='body' required)#comment-message
             input(type='hidden' name='songId' value=song.id)#song-id
-            input(type='hidden' name='songName' value=song.name)
+            input(type='hidden' name='songName' value=song.name)#songName
             button#submit-comment-button Comment
       div#comment-box
         each comment in comments
