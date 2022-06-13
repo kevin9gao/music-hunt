@@ -53,6 +53,7 @@ if (commentButton) {
                 newProfPic.setAttribute('class', 'comment-profile-pics');
                 newAnchor.appendChild(newProfPic);
                 newCommentWrapper.appendChild(newAnchor);
+                newCommentWrapper.setAttribute('id', `comment-wrapper-${commentData.comment.id}`);
 
                 // create new comment-bodies div and p and append
                 const newCommentBodyDiv = document.createElement('div');
@@ -74,13 +75,15 @@ if (commentButton) {
                 const editSubmit = document.createElement('button');
 
                 editDeleteDiv.setAttribute('class', 'edit-and-delete');
+                editDeleteDiv.setAttribute('id', `edit-and-delete-${commentData.comment.id}`);
                 editButton.setAttribute('class', 'edit-button');
                 editButton.setAttribute('id', `edit-comment-${commentData.comment.id}`);
                 // include event listener to newly created comments
-                editButton.addEventListener('click', editEventListener)
+                editButton.addEventListener('click', editEventListener);
                 editButton.innerText = 'Edit';
                 deleteButton.setAttribute('class', 'delete-button');
                 deleteButton.setAttribute('id', `delete-comment-${commentData.comment.id}`);
+                deleteButton.addEventListener('click', deleteEventListener);
                 deleteButton.innerText = 'Delete';
                 editForm.setAttribute('class', 'hidden');
                 editForm.setAttribute('id', `edit-form-${commentData.comment.id}`);
@@ -88,14 +91,13 @@ if (commentButton) {
                 editText.setAttribute('name', 'body');
                 editText.setAttribute('id', `${commentData.comment.id}-edit-comment`);
                 editText.setAttribute('value', `${commentData.comment.body}`);
-                editText.required = true;
                 editSubmit.setAttribute('class', 'edit-submit');
                 editSubmit.setAttribute('id', `edit-submit-${commentData.comment.id}`);
                 editSubmit.innerText = 'Submit Edit';
 
-                editForm.appendChild(editLabel)
-                editForm.appendChild(editText)
-                editForm.appendChild(editSubmit)
+                editForm.appendChild(editLabel);
+                editForm.appendChild(editText);
+                editForm.appendChild(editSubmit);
                 editDeleteDiv.appendChild(editButton);
                 editDeleteDiv.appendChild(deleteButton);
                 editDeleteDiv.appendChild(editForm);
@@ -108,12 +110,13 @@ if (commentButton) {
     });
 }
 
+// Edit Button Functionality
 const editButtons = document.querySelectorAll('.edit-button');
 
-// incorporate edit event to all comments loaded initially.
+// incorporate edit event listener to all comments loaded initially.
 for (let i = 0; i < editButtons.length; i++) {
     const edit = editButtons[i];
-    edit.addEventListener('click', editEventListener)
+    edit.addEventListener('click', editEventListener);
 }
 
 // event listener function to add to each new instance of a comment without reloading
@@ -150,11 +153,39 @@ function editEventListener(e) {
 
         if (commentDataEdit.message === 'Edit') {
             const bodyElement = document.getElementById(`${commentDataEdit.comment.id}-comment-body-text`);
-            const bodyTextArea = document.getElementById(`${commentDataEdit.comment.id}-edit-comment`)
+            const bodyTextArea = document.getElementById(`${commentDataEdit.comment.id}-edit-comment`);
 
-            bodyElement.innerHTML = `${full_name}: ${commentDataEdit.comment.body}`
-            form.classList.add('hidden')
+            bodyElement.innerHTML = `${full_name}: ${commentDataEdit.comment.body}`;
+            form.classList.add('hidden');
             bodyTextArea.value = '';
         }
     })
+}
+
+// Delete Button Functionality
+const deleteButtons = document.querySelectorAll('.delete-button');
+
+// incorporate delete event listener to all delete buttons loaded initially
+for (let i = 0; i < deleteButtons.length; i++) {
+    const del = deleteButtons[i]
+    del.addEventListener('click', deleteEventListener);
+}
+
+async function deleteEventListener(e) {
+    e.preventDefault();
+    const commentId = e.target.id.split('-')[2];
+    const deleteButton = document.getElementById(`delete-comment-${commentId}`)
+
+    const res = await fetch(`/songs/comments/${commentId}`, {
+        method: 'DELETE'
+    })
+
+    const commentDeleteData = await res.json();
+
+    if (commentDeleteData.message = 'Destroy!') {
+        const commentContainer = document.getElementById(`comment-wrapper-${commentId}`);
+        const editDelContainer = document.getElementById(`edit-and-delete-${commentId}`)
+        commentContainer.remove();
+        editDelContainer.remove();
+    }
 }
