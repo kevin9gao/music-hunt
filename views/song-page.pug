@@ -76,8 +76,16 @@ block content
             button#submit-comment-button Comment
       div#comment-box
         each comment in comments
-          div.comment-wrapper
+          div(class='comment-wrapper' id=`comment-wrapper-${comment.id}`)
             a(href=`/users/${comment.User.username}`)
               img(src=comment.User.profilePic).comment-profile-pics
             div.comment-bodies
-              p.comment-body-text= `${comment.User.full_name}: ${comment.body}`
+              p(class='comment-body-text' id=`${comment.id}-comment-body-text`)= `${comment.User.full_name}: ${comment.body}`
+          if (locals.user && locals.user.id === comment.User.id)
+            div(class='edit-and-delete', id=`edit-and-delete-${comment.id}`)
+              button(class='edit-button' id=`edit-comment-${comment.id}`) Edit
+              button(class='delete-button' id=`delete-comment-${comment.id}`) Delete
+              form(class='hidden' id=`edit-form-${comment.id}`)
+                label Edit Comment:
+                textarea(name='body' id=`${comment.id}-edit-comment` value=comment.body required)
+                button(class="edit-submit" id=`edit-submit-${comment.id}`) Submit Edit
