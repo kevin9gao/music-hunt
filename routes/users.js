@@ -16,8 +16,6 @@ router.get('/', asyncHandler(async (req, res, next) => {
     include: [db.Song]
   });
 
-  // console.log(users);
-
   res.render('users', {
     users
   });
