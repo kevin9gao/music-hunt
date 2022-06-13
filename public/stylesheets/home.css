@@ -6,6 +6,8 @@ body {
 }
 
 a {
+    color: transparent;
+    background-color: transparent;
     cursor: pointer;
     text-decoration: none;
 }

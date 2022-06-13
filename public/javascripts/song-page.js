@@ -67,6 +67,7 @@ if (commentButton) {
 
                 // create edit and delete buttons and form
                 const editDeleteDiv = document.createElement('div');
+                const editDelContainer = document.createElement('div');
                 const editButton = document.createElement('button');
                 const deleteButton = document.createElement('button');
                 const editForm = document.createElement('form');
@@ -76,6 +77,7 @@ if (commentButton) {
 
                 editDeleteDiv.setAttribute('class', 'edit-and-delete');
                 editDeleteDiv.setAttribute('id', `edit-and-delete-${commentData.comment.id}`);
+                editDelContainer.setAttribute('class', 'edit-del-container')
                 editButton.setAttribute('class', 'edit-button');
                 editButton.setAttribute('id', `edit-comment-${commentData.comment.id}`);
                 // include event listener to newly created comments
@@ -98,8 +100,9 @@ if (commentButton) {
                 editForm.appendChild(editLabel);
                 editForm.appendChild(editText);
                 editForm.appendChild(editSubmit);
-                editDeleteDiv.appendChild(editButton);
-                editDeleteDiv.appendChild(deleteButton);
+                editDelContainer.appendChild(editButton)
+                editDelContainer.appendChild(deleteButton)
+                editDeleteDiv.appendChild(editDelContainer);
                 editDeleteDiv.appendChild(editForm);
                 commentBox.appendChild(editDeleteDiv);
 
@@ -130,7 +133,9 @@ function editEventListener(e) {
 
     if (form.classList.contains('hidden')) {
         form.classList.remove('hidden');
+        form.classList.add('form-design');
     } else {
+        form.classList.remove('form-design');
         form.classList.add('hidden');
     }
 
@@ -157,6 +162,7 @@ function editEventListener(e) {
 
             bodyElement.innerHTML = `${full_name}: ${commentDataEdit.comment.body}`;
             form.classList.add('hidden');
+            form.classList.remove('form-design')
             bodyTextArea.value = '';
         }
     })
