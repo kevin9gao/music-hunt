@@ -61,14 +61,19 @@
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    margin: 0px 20px;
+    border-radius: 10px;
 }
 
 .profile-picture img {
-    max-width: 75%;
-    width: 25vh;
-    height: auto;
+    width: 150px;
+    min-height: 150px;
     display: flex;
     align-items: center;
+    object-fit: cover;
 }
 
 .links img {
