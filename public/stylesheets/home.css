@@ -201,7 +201,7 @@ a {
 }
 
 .artist-container {
-    width: 280px;
+    width: 200px;
     height: fit-content;
     justify-content: center;
     margin-bottom: 40px;
@@ -210,7 +210,9 @@ a {
 }
 
 .artist-img {
-    width: 280px;
-    height: 164px;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
     border-radius: 10%;
 }

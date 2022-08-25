@@ -23,6 +23,8 @@ body {
 .profile-pic {
   width: 180px;
   height: 180px;
+  object-fit: cover;
+  object-position: center;
   border-radius: 50%;
   border: 5px solid white;
   margin: 0 30px;
@@ -164,7 +166,11 @@ tr:nth-child(even) td {
 }
 
 .artist-img {
-  width: 30vh;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
 }
 
 .artist-container {
