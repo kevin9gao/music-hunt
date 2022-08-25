@@ -6,13 +6,12 @@ append head
 block content
   div.body-container
     input(type='hidden' name='user' value=locals.user)#current-user
+    h1 Songs
     table
         thead
             div.th-container
                 tr
-                    th Album Art
-                    th Song Name
-                    th Song Artist
+                    th Song
                     th Play Song
                     th Description
                     th Upvotes
@@ -27,22 +26,22 @@ block content
                         - count +=1
                         if(locals.user && songUpvote.userId === locals.user.id)
                             - hasBeenClicked = "true"
-                div.td-container
-                  tr
-                    td
-                        img(src=song.albumArt class="songPic" height="150px" width="150px")
-                    td
-                        a(href=`/songs/${song.name}/${song.id}`)= song.name
-                    td
-                        a(href=`/users/${song.User.username}`)= song.User.username
-                    td
+                tr
+                    div.eachsong
+                        td
+                            div
+                                img(src=song.albumArt class="songPic" height="150px" width="150px")
+                            div.Songs-song-name
+                                a(href=`/songs/${song.name}/${song.id}`)= song.name
+                            div.Songs-song-artist
+                                a(href=`/users/${song.User.username}`)= song.User.username
+                        td
+                            iframe(style = "border-radius:12px" src = `${link.slice(0, -20)}?utm_source=generator` width = "100%" height = "80" frameBorder = "0"  allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture")
 
-                        iframe(style = "border-radius:12px" src = `${link.slice(0, -20)}?utm_source=generator` width = "100%" height = "80" frameBorder = "0"  allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture")
-
-                    td= song.description
-                    td
-                        div.upvotes
-                            button(class="upvote_button" id=`${song.id}` data-click= hasBeenClicked )
-                                div#upvote_container
-                                    div.upvote_icon(id=`I${song.id}`)
-                                    div.upvote_text_style(id=`N${song.id}`)= count
+                        td= song.description
+                        td
+                            div.upvotes
+                                button(class="upvote_button" id=`${song.id}` data-click= hasBeenClicked )
+                                    div#upvote_container
+                                        div.upvote_icon(id=`I${song.id}`)
+                                        div.upvote_text_style(id=`N${song.id}`)= count
